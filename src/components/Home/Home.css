@@ -1,0 +1,54 @@
+.Home {
+  
+}
+.Home_banner {
+  widows: 100%;
+  height: 100vh;
+  position: relative;
+}
+.Home_img {
+  position: absolute;
+  width: 90%;
+  z-index: -1;
+  right: 5%;
+  left: 5%;
+}
+.Home_img > img {
+  -webkit-animation:spin 50s linear infinite;
+  -moz-animation:spin 50s linear infinite;
+  animation:spin 50s linear infinite;
+  width: 100%;
+}
+.Home_logo {
+  position: absolute;
+  width: 40%;
+  z-index: 1;
+  right: 30%;
+  left: 30%;
+  bottom: 10vh;
+}
+.Home_logo > img {
+  width: 100%;
+}
+.Home_btns {
+  text-align: end;
+  width: 60%;
+  height: 200px;
+}
+.Home_btns :nth-child(1) button {
+  margin-right: 40px;
+  padding: 20px 40px;
+}
+.Home_btns :nth-child(2) button {
+  padding: 20px 40px;
+  margin-right: 60px;
+}
+.Home_body {
+  widows: 100%;
+  height: 100vh;
+  background: black;
+}
+
+@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }

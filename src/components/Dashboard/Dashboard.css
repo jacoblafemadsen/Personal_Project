@@ -1,0 +1,42 @@
+.Dashboard {
+  position: relative;
+}
+.Dash-top {
+  width: 80%;
+  height: 50px;
+  background: aquamarine;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.Dash-top button {
+  width: 100px;
+  height: 30px;
+  position: absolute;
+  right: 25px;
+  top: 10px;
+  background: rgb(190, 0, 38);
+  border-bottom: 2px solid black;
+  border-top: 0;
+  border-right: 2px solid black;
+  border-left: 0;
+  border-radius: 15px;
+  color: white;
+}
+#player {
+  position: absolute;
+  top: 75px;
+  right: calc(20% + 25px);
+}
+#queue {
+  position: absolute;
+  right: calc(20% + 25px);
+  top: 520px;
+}
+#chat {
+  width: 20%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
