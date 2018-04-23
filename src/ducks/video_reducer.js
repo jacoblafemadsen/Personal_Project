@@ -1,11 +1,15 @@
+import axios from 'axios'
+
 const initialState = {
   currentVideoId: '',
   videoQueue: [],
-  videoCurrentState: 4
+  videoCurrentState: 4,
+  user: {}
 }
 
 const ADD_TO_QUEUE = 'ADD_TO_QUEUE',
-      CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE'
+      CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
+      GET_USER_INFO = 'GET_USER_INFO'
 
 
 export function addToQueue(videoUrl) {
@@ -19,6 +23,16 @@ export function changeVideoState(videoState) {
   return {
     type: CHANGE_VIDEO_STATE,
     payload: videoState
+  }
+}
+
+export function getUser() {
+  let userData = axios.get('/auth/me').then(res => {
+    return res.data
+  })
+  return {
+    type: GET_USER_INFO,
+    payload: userData
   }
 }
 
@@ -36,6 +50,9 @@ export default function reducer(state = initialState, action) {
 
     case CHANGE_VIDEO_STATE:
       return Object.assign({}, state, {videoCurrentState: action.payload})
+
+    case GET_USER_INFO + '_FULFILLED':
+      return Object.assign({}, state, {user: action.payload})
 
     default:
       return state

@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express'),
       bodyParser = require('body-parser'),
       socket = require('socket.io'),
-      express = require('express-session'),
+      session = require('express-session'),
       passport = require('passport'),
       Auth0Strategy = require('passport-auth0'),
       massive = require('massive')
@@ -19,6 +19,10 @@ const {
   CALLBACK_URL,
   CONNECTION_STRING
 } = process.env
+
+massive(CONNECTION_STRING).then(db => {
+  app.set('db', db)
+})
 
 app.use(session({
   secret: SESSION_SECRET,
@@ -42,9 +46,9 @@ passport.use(new Auth0Strategy({
       return done(null, users[0].id)
     } else {
       db.create_user([displayName, picture, id])
-        .then(createdUser => done(null, createdUser[0].id))
+        .then(createdUser => done(null, createdUser[0].id)).catch(e => console.log(e))
     }
-  })
+  }).catch(e => console.log(e))
 }))
 
 passport.serializeUser((id, done) => {
