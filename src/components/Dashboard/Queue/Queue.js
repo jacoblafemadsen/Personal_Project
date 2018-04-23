@@ -39,7 +39,7 @@ class Queue extends Component {
             className="Queue_add"
             onClick={() => this.emitQueue()}
           >
-            <img src={plus}/>
+            <img src={plus} alt=""/>
           </button>
         </div>
       </div>
@@ -53,4 +53,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { addToQueue })(Queue)
+export default connect(mapStateToProps, {addToQueue})(Queue)

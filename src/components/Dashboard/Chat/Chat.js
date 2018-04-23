@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import io from 'socket.io-client'
+import { connect } from 'react-redux'
 import letter from '../../../images/letter-white.svg'
 import ChatCard from './ChatCard/ChatCard'
 import './Chat.css'
@@ -20,7 +21,7 @@ class Chat extends Component {
   }
 
   sendMessage() {
-    socket.emit('blast message', this.state.newMessage)
+    socket.emit('blast message', {img: this.props.user.img, message: this.state.newMessage})
     this.setState({newMessage: ''})
   }
 
@@ -32,7 +33,7 @@ class Chat extends Component {
     const messages = this.state.messages.map(e => {
       return (
         <ChatCard 
-          message={e}
+          userObj={e}
         />
       )
     })
@@ -51,11 +52,16 @@ class Chat extends Component {
           className="Chat_send"
           onClick={() => this.sendMessage()}
         >
-        <img src={letter}/>
+        <img src={letter} alt=""/>
         </button>
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
 
-export default Chat
+export default connect(mapStateToProps)(Chat)

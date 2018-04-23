@@ -23,6 +23,25 @@
   border-radius: 15px;
   color: white;
 }
+.Dash-user-info-container{
+  width: fit-content;
+  height: 45px;
+  background: rgb(16, 100, 209);
+  border-radius: 25px;
+  padding: 0 5px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.Dash-user-img {
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+}
+.Dash-user-img img {
+  width: 100%;
+  border-radius: 25px;
+}
 #player {
   position: absolute;
   top: 75px;

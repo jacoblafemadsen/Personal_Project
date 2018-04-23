@@ -52,25 +52,25 @@ passport.use(new Auth0Strategy({
 }))
 
 passport.serializeUser((id, done) => {
-  console.log(id)
-  //putting info in session
+  console.log('serializeUser: ' + id)
   return done(null, id)
 })
 passport.deserializeUser((id, done) => {
   app.get('db').find_session_user([id]).then(user => {
+    console.log('deserializeUser: ' + user[0].id)
     done(null, user[0])
   })
 })
 
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-  successRedirect: 'http://localhost:3000/#/dashboard',
+  successRedirect: 'http://localhost:3000/#/findroom',
   failureRedirect: 'http://localhost:3000/#/'
 }))
 
 app.get('/auth/me', (req, res) => {
-  console.log(req.user)
-  if(req.user) {
+
+  if(req.user.id) {
     res.status(200).send(req.user)
   } else {
     res.status(401).send()

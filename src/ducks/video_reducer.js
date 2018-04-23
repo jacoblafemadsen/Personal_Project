@@ -29,7 +29,7 @@ export function changeVideoState(videoState) {
 export function getUser() {
   let userData = axios.get('/auth/me').then(res => {
     return res.data
-  })
+  }).catch(e => console.log(e))
   return {
     type: GET_USER_INFO,
     payload: userData

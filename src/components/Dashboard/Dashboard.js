@@ -1,16 +1,29 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { getUser } from '../../ducks/video_reducer'
 import Player from './Player/Player'
 import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
 import './Dashboard.css'
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.getUser()
+    console.log(this.props.user)
+  }
   render() {
     return (
       <div className="Dashboard">
         <div className="Dash-top">
-          <Link to="/join"><button>Leave Room</button></Link>
+          <Link to="/findroom"><button>Leave Room</button></Link>
+          <a href='/logout'><button>Logout</button></a>
+          <div className="Dash-user-info-container">
+            <p>{this.props.user.display_name}</p>
+            <div className="Dash-user-img">
+              <img src={this.props.user.img} alt=""/>
+            </div>
+          </div>
         </div>
         <div id='player'><Player /></div>
         <div id='queue'><Queue/></div>
@@ -19,5 +32,10 @@ class Dashboard extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
 
-export default Dashboard;
+export default connect(mapStateToProps, {getUser})(Dashboard);
