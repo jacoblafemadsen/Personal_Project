@@ -1,6 +1,5 @@
 import React from 'react'
 import './ChatCard.css'
-import { connect } from 'react-redux'
 
 function ChatCard(props) {
   return (
@@ -29,10 +28,5 @@ function ChatCard(props) {
     </div>
   )
 }
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  }
-}
 
-export default connect()(ChatCard)
+export default ChatCard

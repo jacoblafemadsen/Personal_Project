@@ -45,7 +45,7 @@ class Player extends Component {
       <div className="Player">
         <YouTube
           className='player'
-          videoId={this.props.currentVideoId}
+          videoId={this.props.currentVideo.id}
           opts={opts}         
           onPlay={() => this.emitPlayerStateChange('play')}
           onPause={() => this.emitPlayerStateChange('pause')}
@@ -59,7 +59,7 @@ class Player extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentVideoId: state.currentVideoId
+    currentVideo: state.currentVideo,
   }
 }
 

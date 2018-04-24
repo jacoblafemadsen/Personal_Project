@@ -5,6 +5,7 @@ import { getUser } from '../../ducks/video_reducer'
 import Player from './Player/Player'
 import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
+import QueueList from './QueueList/QueueList'
 import './Dashboard.css'
 
 class Dashboard extends Component {
@@ -25,6 +26,12 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
+        <div id='queue-list'>
+          <QueueList 
+            curVid={this.props.currentVideo} 
+            vidArr={this.props.videoQueue}
+          />
+        </div>
         <div id='player'><Player /></div>
         <div id='queue'><Queue/></div>
         <div id='chat'><Chat/></div>
@@ -34,7 +41,9 @@ class Dashboard extends Component {
 }
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    currentVideo: state.currentVideo,
+    videoQueue: state.videoQueue
   }
 }
 

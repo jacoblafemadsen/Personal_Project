@@ -1,7 +1,8 @@
+
 import axios from 'axios'
 
 const initialState = {
-  currentVideoId: '',
+  currentVideo: {},
   videoQueue: [],
   videoCurrentState: 4,
   user: {}
@@ -13,9 +14,20 @@ const ADD_TO_QUEUE = 'ADD_TO_QUEUE',
 
 
 export function addToQueue(videoUrl) {
+  var vidId = videoUrl
+  vidId.length > 11 ? vidId = vidId.substr((vidId.search(/watch\?v=/) + 8), 11) : vidId = videoUrl
+  var videoObj = axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${vidId}&key=${process.env.REACT_APP_YOUTUBE}&part=snippet,statistics`).then(res => {
+    var obj = {
+      id: vidId, 
+      name: res.data.items[0].snippet.localized.title,
+      img: res.data.items[0].snippet.thumbnails.default.url
+    }
+    console.log(obj)
+    return obj
+  }).catch(e => console.log(e))
   return {
     type: ADD_TO_QUEUE,
-    payload: videoUrl
+    payload: videoObj
   }
 }
 
@@ -39,14 +51,13 @@ export function getUser() {
 export default function reducer(state = initialState, action) {
   switch(action.type) {
 
-    case ADD_TO_QUEUE:
-      var str = action.payload
-      str.length > 11 ? str = str.substr((str.search(/watch\?v=/) + 8), 11) : str = action.payload
-      if(state.currentVideoId) {
-        var newArr = [...state.videoQueue, str]
+    case ADD_TO_QUEUE + '_FULFILLED':
+      if(state.currentVideo.id) {
+        var newArr = [...state.videoQueue, action.payload]
         return Object.assign({}, state, {videoQueue: newArr})
+      } else {
+        return Object.assign({}, state, {currentVideo: action.payload})
       }
-      return Object.assign({}, state, {currentVideoId: str})
 
     case CHANGE_VIDEO_STATE:
       return Object.assign({}, state, {videoCurrentState: action.payload})

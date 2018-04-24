@@ -1,0 +1,5 @@
+.QueueList {
+  width: 100%;
+  height: calc(100vh - 50px);
+  background: rgb(99, 99, 99);
+}
