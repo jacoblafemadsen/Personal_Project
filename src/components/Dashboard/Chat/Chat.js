@@ -21,7 +21,7 @@ class Chat extends Component {
   }
 
   sendMessage() {
-    socket.emit('blast message', {img: this.props.user.img, message: this.state.newMessage})
+    socket.emit('blast message', {display_name: this.props.user.display_name, img: this.props.user.img, message: this.state.newMessage})
     this.setState({newMessage: ''})
   }
 
@@ -34,6 +34,7 @@ class Chat extends Component {
       return (
         <ChatCard 
           userObj={e}
+          currentUser={this.props.user.display_name}
         />
       )
     })

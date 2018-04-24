@@ -1,11 +1,9 @@
 .ChatCard {
-  display: flex;
   padding-top: 10px;
 }
 .ChatCard_user_img {
   width: 20px;
   height: 20px;
-  background: blueviolet;
   margin: 0 10px;
 }
 .ChatCard_user_img img {
@@ -13,9 +11,8 @@
   border-radius: 10px;
 }
 .ChatCard_message {
-  max-width: 60%;
+  max-width: 70%;
   width: fit-content;
-  background: aquamarine;
   border-radius: 10px;
   white-space: pre-wrap;  
   white-space: -moz-pre-wrap;  
@@ -25,4 +22,24 @@
   padding: 5px 10px;
   font-family: 'Roboto', sans-serif;
   font-size: 10pt;
+}
+.other {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end
+}
+
+#otherCard {
+  background: gold;
+}
+
+#mainCard {
+  background: aquamarine;
 }

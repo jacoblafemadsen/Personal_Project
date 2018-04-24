@@ -52,12 +52,10 @@ passport.use(new Auth0Strategy({
 }))
 
 passport.serializeUser((id, done) => {
-  console.log('serializeUser: ' + id)
   return done(null, id)
 })
 passport.deserializeUser((id, done) => {
   app.get('db').find_session_user([id]).then(user => {
-    console.log('deserializeUser: ' + user[0].id)
     done(null, user[0])
   })
 })
@@ -69,7 +67,6 @@ app.get('/auth/callback', passport.authenticate('auth0', {
 }))
 
 app.get('/auth/me', (req, res) => {
-
   if(req.user.id) {
     res.status(200).send(req.user)
   } else {
@@ -86,7 +83,8 @@ const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: 
 
 var playerSocket = io.of('/player-namespace')
 playerSocket.on('connection', socket => {
-  socket.on('blast message', input => {
+  socket.on('broadcast message', input => {
+    console.log(input)
     playerSocket.emit('generate response', input)
   });
 })

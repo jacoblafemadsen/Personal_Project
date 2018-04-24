@@ -9,39 +9,23 @@ class Player extends Component {
   constructor() {
     super()
     this.state = {
-      currentTime: 0,
-      playerCode: '',
       stateEvent: {}
     }
-    socket.on('generate response', videoState => {
-      console.log(this.state.stateEvent)
-      switch (videoState) {
-        case YouTube.PlayerState.UNSTARTED:
-          this.setState({currentTime: this.state.stateEvent.getCurrentTime()});
-          break;
-        case YouTube.PlayerState.ENDED:
-          this.setState({currentTime: this.state.stateEvent.getCurrentTime()});
-          break;
-        case YouTube.PlayerState.PLAYING:
-          this.state.stateEvent.playVideo()
-          this.setState({currentTime: this.state.stateEvent.getCurrentTime()});
-          break;
-        case YouTube.PlayerState.PAUSED:
-          this.state.stateEvent.pauseVideo()
-          this.setState({currentTime: this.state.stateEvent.getCurrentTime()});
-          break;
-        case YouTube.PlayerState.BUFFERING:
-          this.setState({currentTime: this.state.stateEvent.getCurrentTime()});
-          break;
-        case YouTube.PlayerState.CUED:
-          this.setState({currentTime: this.state.stateEvent.getCurrentTime()});
-          break;
-    }})
+    socket.on('generate response', res => {
+      res === 'play' ? this.play() : ''
+      res === 'pause' ? this.pause() : ''
+    })
     this.putEventOnState = this.putEventOnState.bind(this)
+
   }
-  emitPlayerStateChange(event) {
-      socket.emit('blast message', event.data)
-    
+  play() {
+    this.state.stateEvent.playVideo()
+  }
+  pause() {
+    this.state.stateEvent.pauseVideo()
+  }
+  emitPlayerStateChange(name) {
+    socket.emit('broadcast message', name)
   }
   putEventOnState(event) {
     this.setState({stateEvent: event.target})
@@ -62,13 +46,12 @@ class Player extends Component {
         <YouTube
           className='player'
           videoId={this.props.currentVideoId}
-          opts={opts}
-          onStateChange={this.emitPlayerStateChange}
-          onReady={this.putEventOnState}
+          opts={opts}         
+          onPlay={() => this.emitPlayerStateChange('play')}
+          onPause={() => this.emitPlayerStateChange('pause')}
+          onReady={ e => this.putEventOnState(e)}
         />
-        <h1>X6CXr-41SVA</h1>
-        <h1>https://www.youtube.com/watch?v=sllAIF99h3s</h1>
-        {`Current Time: ${this.state.currentTime}`}
+        <h1>{`X6CXr-41SVA`}</h1>
       </div>
     );
   }
