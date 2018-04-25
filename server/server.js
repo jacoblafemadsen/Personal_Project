@@ -105,18 +105,27 @@ app.get(`/api/rooms`, (req, res) => {
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: ${SERVER_PORT}`)))
 
-io.on('connection', socket => {
-
-  // socket.emit('chat response', {display_name: 'theServer', message: 'Welcome to the room!'})
-  // socket.broadcast.emit('chat response', {display_name: 'theServer', message: 'Blank has joined the room!'})
-  
-  socket.on('chat message', input => {
-    socket.emit('chat response', input)
-  });
-  socket.on('queue message', input => {
-    socket.emit('queue response', input)
-  });
+var playerSocket = io.of('/player-namespace')
+playerSocket.on('connection', socket => {
   socket.on('video message', input => {
-    socket.emit('video response', input)
+    playerSocket.emit('video response', input)
+  });
+})
+
+var chatSocket = io.of('/chat-namespace')
+chatSocket.on('connection', socket => {
+
+  socket.emit('chat response', {display_name: 'theServer', message: 'Welcome to the room!'})
+  socket.broadcast.emit('chat response', {display_name: 'theServer', message: 'Blank has joined the room!'})
+
+  socket.on('chat message', input => {
+    chatSocket.emit('chat response', input)
+  });
+})
+
+var queueSocket = io.of('/queue-namespace')
+queueSocket.on('connection', socket => {
+  socket.on('queue message', input => {
+    queueSocket.emit('queue response', input)
   });
 })

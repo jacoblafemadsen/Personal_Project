@@ -6,7 +6,7 @@ import io from 'socket.io-client'
 import plus from '../../../images/plus-white.svg'
 import './Queue.css'
 
-const socket = io()
+const socket = io('/queue-namespace')
 
 class Queue extends Component {
   constructor() {
