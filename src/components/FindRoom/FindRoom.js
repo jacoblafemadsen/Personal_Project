@@ -42,6 +42,7 @@ class FindRoom extends Component {
       return (
         <RoomCard 
           roomObj={e}
+          userId={this.props.user.id}
         />
       )
     })

@@ -85,7 +85,7 @@ export default function reducer(state = initialState, action) {
       var curVid = arrObj.pop()
       return Object.assign({}, state, {currentVideo: curVid, videoQueue: arrObj})
 
-    case JOIN_ROOM:
+    case JOIN_ROOM + '_FULFILLED':
       return Object.assign({}, state, {user: action.payload})
 
     default:
