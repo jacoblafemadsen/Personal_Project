@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addToQueue } from '../../../ducks/video_reducer'
+import QueueList from './QueueList/QueueList'
 import io from 'socket.io-client'
 import plus from '../../../images/plus-white.svg'
 import './Queue.css'
@@ -42,6 +43,10 @@ class Queue extends Component {
             <img src={plus} alt=""/>
           </button>
         </div>
+        <QueueList 
+          curVid={this.props.currentVideo} 
+          vidArr={this.props.videoQueue}
+        />
       </div>
     );
   }
@@ -49,6 +54,7 @@ class Queue extends Component {
 
 function mapStateToProps(state) {
   return {
+    currentVideo: state.currentVideo,
     videoQueue: state.videoQueue
   }
 }

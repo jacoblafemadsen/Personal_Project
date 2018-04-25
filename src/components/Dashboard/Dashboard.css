@@ -48,7 +48,7 @@
   width: 100%;
   border-radius: 25px;
 }
-#queue-list {
+#queue {
   width: 25%;
   height: calc(100vh - 50px);
   position: absolute;
@@ -59,11 +59,6 @@
   position: absolute;
   top: 75px;
   right: calc(20% + 25px);
-}
-#queue {
-  position: absolute;
-  right: calc(20% + 25px);
-  top: 520px;
 }
 #chat {
   width: 20%;
