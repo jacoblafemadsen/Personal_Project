@@ -4,17 +4,22 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getUser, joinRoom } from '../../ducks/video_reducer'
 import './FindRoom.css'
+import RoomCard from './RoomCard/RoomCard';
 
 class FindRoom extends Component {
   constructor() {
     super()
     this.state ={
       roomNameInpt: '',
-      passwordInpt: ''
+      passwordInpt: '',
+      rooms: []
     }
   }
   componentDidMount() {
     this.props.getUser()
+    axios.get('/api/rooms').then(res => {
+      this.setState({rooms: res.data})
+    })
   }
   updateName(roomNameInpt) {
     this.setState({roomNameInpt})
@@ -33,6 +38,13 @@ class FindRoom extends Component {
     }).catch(e => console.log(e))
   }
   render() {
+    var roomArr = this.state.rooms.map(e => {
+      return (
+        <RoomCard 
+          roomObj={e}
+        />
+      )
+    })
     return (
       <div className="FindRoom">
         <div className="FR-top-bar">
@@ -40,7 +52,7 @@ class FindRoom extends Component {
           <Link to='/dashboard'><button>DashBoard</button></Link>
         </div>
         <div className="FR-join-room">
-        
+          {roomArr}
         </div>
         <div className="FR-create-room">
           <div className="FR-user-img">

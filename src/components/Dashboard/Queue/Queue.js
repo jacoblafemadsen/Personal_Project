@@ -15,6 +15,7 @@ class Queue extends Component {
       queueInput: ''
     }
     socket.on('queue response', data => {
+      console.log(data)
       this.props.addToQueue(data)
     })
   }
@@ -23,7 +24,7 @@ class Queue extends Component {
     this.setState({queueInput})
   }
   emitQueue() {
-    socket.emit('blast message', this.state.queueInput)
+    socket.emit('queue message', this.state.queueInput)
     this.setState({queueInput: ''})
   }
 

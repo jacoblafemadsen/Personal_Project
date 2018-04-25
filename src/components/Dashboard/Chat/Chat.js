@@ -21,7 +21,7 @@ class Chat extends Component {
   }
 
   sendMessage() {
-    socket.emit('blast message', {display_name: this.props.user.display_name, img: this.props.user.img, message: this.state.newMessage})
+    socket.emit('chat message', {display_name: this.props.user.display_name, img: this.props.user.img, message: this.state.newMessage})
     this.setState({newMessage: ''})
   }
 

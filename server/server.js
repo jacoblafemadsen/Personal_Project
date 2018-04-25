@@ -96,11 +96,18 @@ app.put(`/api/joinroom/:id`, (req, res) => {
     .catch(() => res.status(500).send())
 })
 
+app.get(`/api/rooms`, (req, res) => {
+  const db = app.get('db')
+  db.get_rooms()
+    .then(rooms => res.status(200).send(rooms))
+    .catch(() => res.status(500).send())
+})
+
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: ${SERVER_PORT}`)))
 
 var playerSocket = io.of('/player-namespace')
 playerSocket.on('connection', socket => {
-  socket.on('blast message', input => {
+  socket.on('video message', input => {
     playerSocket.emit('video response', input)
   });
 })
@@ -108,18 +115,17 @@ playerSocket.on('connection', socket => {
 var chatSocket = io.of('/chat-namespace')
 chatSocket.on('connection', socket => {
 
-  console.log(`New user has joined chat`)
   socket.emit('chat response', {display_name: 'theServer', message: 'Welcome to the room!'})
   socket.broadcast.emit('chat response', {display_name: 'theServer', message: 'Blank has joined the room!'})
 
-  socket.on('blast message', input => {
+  socket.on('chat message', input => {
     chatSocket.emit('chat response', input)
   });
 })
 
 var queueSocket = io.of('/queue-namespace')
 queueSocket.on('connection', socket => {
-  socket.on('blast message', input => {
-    queueSocket.emit('chat response', input)
+  socket.on('queue message', input => {
+    queueSocket.emit('queue response', input)
   });
 })
