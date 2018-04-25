@@ -5,15 +5,14 @@ const initialState = {
   currentVideo: {},
   videoQueue: [],
   videoCurrentState: 4,
-  user: {},
-  roomId: ''
+  user: {}
 }
 
 const ADD_TO_QUEUE = 'ADD_TO_QUEUE',
       CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
       GET_USER_INFO = 'GET_USER_INFO',
       NEXT_IN_QUEUE = 'NEXT_IN_QUEUE',
-      MAKE_A_ROOM = 'MAKE_A_ROOM'
+      JOIN_ROOM = 'JOIN_ROOM'
 
 
 export function addToQueue(videoUrl) {
@@ -54,13 +53,13 @@ export function nextInQueue() {
   return {type: NEXT_IN_QUEUE}
 }
 
-export function makeARoom(roomObj) {
-  var newRoom = axios.post('/api/makeroom', roomObj).then(res => {
+export function joinRoom(idObj) {
+  var updatedUser = axios.put(`/api/joinroom/${idObj.user_id}`, {room_id: idObj.room_id}).then(res => {
     return res.data
-  }).catch(e => console.log(e))
+  })
   return {
-    type: MAKE_A_ROOM,
-    payload: newRoom
+    type: JOIN_ROOM,
+    payload: updatedUser
   }
 }
 
@@ -86,8 +85,8 @@ export default function reducer(state = initialState, action) {
       var curVid = arrObj.pop()
       return Object.assign({}, state, {currentVideo: curVid, videoQueue: arrObj})
 
-    case MAKE_A_ROOM + '_FULFILLED':
-      return Object.assign({}, state, {roomId: action.payload.id})
+    case JOIN_ROOM:
+      return Object.assign({}, state, {user: action.payload})
 
     default:
       return state

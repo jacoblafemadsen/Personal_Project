@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getUser, makeARoom } from '../../ducks/video_reducer'
+import { getUser, joinRoom } from '../../ducks/video_reducer'
 import './FindRoom.css'
 
 class FindRoom extends Component {
@@ -22,12 +23,14 @@ class FindRoom extends Component {
     this.setState({passwordInpt})
   }
   prepForMakeRoom() {
-    let obj = {
+    let roomObj = {
       name: this.state.roomNameInpt,
       password: this.state.passwordInpt,
       made_by: this.props.user.display_name
     }
-    this.props.makeARoom(obj)
+    axios.post('/api/makeroom', roomObj).then(res => {
+      this.props.joinRoom({user_id: this.props.user.id, room_id: res.data.id})
+    }).catch(e => console.log(e))
   }
   render() {
     return (
@@ -55,9 +58,9 @@ class FindRoom extends Component {
             onChange={e => this.updatePassword(e.target.value)}
             value={this.state.passwordInpt}
           />
-          <button
+          <Link to='/dashboard'><button
             onClick={() => this.prepForMakeRoom()}
-          >Make room</button>
+          >Make room</button></Link>
         </div>
       </div>
     );
@@ -69,4 +72,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getUser, makeARoom})(FindRoom);
+export default connect(mapStateToProps, {getUser, joinRoom})(FindRoom);
