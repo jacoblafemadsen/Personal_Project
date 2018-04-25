@@ -10,7 +10,6 @@ import './Dashboard.css'
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getUser()
-    console.log(this.props.user)
   }
   render() {
     return (

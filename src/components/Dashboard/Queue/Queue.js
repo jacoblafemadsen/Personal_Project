@@ -43,6 +43,8 @@ class Queue extends Component {
             <img src={plus} alt=""/>
           </button>
         </div>
+        
+        <h1>{`X6CXr-41SVA`}</h1>
         <QueueList 
           curVid={this.props.currentVideo} 
           vidArr={this.props.videoQueue}

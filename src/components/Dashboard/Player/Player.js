@@ -10,11 +10,16 @@ class Player extends Component {
   constructor() {
     super()
     this.state = {
-      stateEvent: {}
+      stateEvent: {},
+      btnStatus: 'play' 
     }
     socket.on('generate response', res => {
       res === 'play' ? this.play() : ''
       res === 'pause' ? this.pause() : ''
+      res === '-60' ? this.seekToLocation(-60) : ''
+      res === '-10' ? this.seekToLocation(-10) : ''
+      res === '10' ? this.seekToLocation(10) : ''
+      res === '60' ? this.seekToLocation(60) : ''
     })
     this.putEventOnState = this.putEventOnState.bind(this)
 
@@ -30,6 +35,9 @@ class Player extends Component {
   }
   putEventOnState(event) {
     this.setState({stateEvent: event.target})
+  }
+  seekToLocation(num) {
+    this.state.stateEvent.seekTo(this.state.stateEvent.getCurrentTime() + num)
   }
 
   render() {
@@ -53,10 +61,19 @@ class Player extends Component {
           onEnd={() => this.props.nextInQueue()}
           onReady={e => this.putEventOnState(e)}
         />
-        <button onClick={() => this.emitPlayerStateChange('pause')}>Pause</button>
-        <button onClick={() => this.emitPlayerStateChange('play')}>Play</button>
-
-        <h1>{`X6CXr-41SVA`}</h1>
+        <button onClick={() => {
+          if(this.state.btnStatus === 'pause') {
+            this.emitPlayerStateChange('pause')
+            this.setState({btnStatus: 'play'})
+          } else if (this.state.btnStatus === 'play') {
+            this.emitPlayerStateChange('play')
+            this.setState({btnStatus: 'pause'})
+          }
+        }}>{this.state.btnStatus}</button>
+        <button onClick={() => this.emitPlayerStateChange('-60')}>-60</button>
+        <button onClick={() => this.emitPlayerStateChange('-10')}>-10</button>
+        <button onClick={() => this.emitPlayerStateChange('10')}>10</button>
+        <button onClick={() => this.emitPlayerStateChange('60')}>60</button>
       </div>
     );
   }
