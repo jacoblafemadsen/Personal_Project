@@ -5,13 +5,15 @@ const initialState = {
   currentVideo: {},
   videoQueue: [],
   videoCurrentState: 4,
-  user: {}
+  user: {},
+  roomId: ''
 }
 
 const ADD_TO_QUEUE = 'ADD_TO_QUEUE',
       CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
       GET_USER_INFO = 'GET_USER_INFO',
-      NEXT_IN_QUEUE = 'NEXT_IN_QUEUE'
+      NEXT_IN_QUEUE = 'NEXT_IN_QUEUE',
+      MAKE_A_ROOM = 'MAKE_A_ROOM'
 
 
 export function addToQueue(videoUrl) {
@@ -49,8 +51,17 @@ export function getUser() {
 }
 
 export function nextInQueue() {
-  console.log('nextInQueue Fn is being hit')
   return {type: NEXT_IN_QUEUE}
+}
+
+export function makeARoom(roomObj) {
+  var newRoom = axios.post('/api/makeroom', roomObj).then(res => {
+    return res.data
+  }).catch(e => console.log(e))
+  return {
+    type: MAKE_A_ROOM,
+    payload: newRoom
+  }
 }
 
 export default function reducer(state = initialState, action) {
@@ -73,8 +84,10 @@ export default function reducer(state = initialState, action) {
     case NEXT_IN_QUEUE:      
       var arrObj = [...state.videoQueue]
       var curVid = arrObj.pop()
-      console.log(arrObj + '|  |' + curVid)
       return Object.assign({}, state, {currentVideo: curVid, videoQueue: arrObj})
+
+    case MAKE_A_ROOM + '_FULFILLED':
+      return Object.assign({}, state, {roomId: action.payload.id})
 
     default:
       return state

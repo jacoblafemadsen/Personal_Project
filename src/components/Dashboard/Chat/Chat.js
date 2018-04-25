@@ -14,7 +14,7 @@ class Chat extends Component {
       messages: [],
       newMessage: ''
     }
-    socket.on('generate response', data => {
+    socket.on('chat response', data => {
       const messages = [...this.state.messages, data]
       this.setState({messages})
     })

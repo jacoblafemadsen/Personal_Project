@@ -36,10 +36,21 @@
   justify-content: flex-end
 }
 
+.server {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  
+}
+
 #otherCard {
   background: gold;
 }
 
 #mainCard {
   background: aquamarine;
+}
+
+#serverCard {
+  background: rgb(255, 255, 255);
 }

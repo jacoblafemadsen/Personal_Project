@@ -13,7 +13,7 @@ class Player extends Component {
       stateEvent: {},
       btnStatus: 'play' 
     }
-    socket.on('generate response', res => {
+    socket.on('video response', res => {
       res === 'play' ? this.play() : ''
       res === 'pause' ? this.pause() : ''
       res === '-60' ? this.seekToLocation(-60) : ''
@@ -36,7 +36,7 @@ class Player extends Component {
     this.props.nextInQueue()
   }
   emitPlayerStateChange(name) {
-    socket.emit('broadcast message', name)
+    socket.emit('blast message', name)
   }
   putEventOnState(event) {
     this.setState({stateEvent: event.target})

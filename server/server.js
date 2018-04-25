@@ -79,26 +79,37 @@ app.get('/logout', (req, res) => {
   res.redirect('http://localhost:3000/#/')
 })
 
+app.post('/api/makeroom', (req, res) => {
+  const db = app.get('db')
+  const { name, password, made_by } = req.body
+  db.create_room([name, password, made_by])
+    .then(room => res.status(200).send(room)).catch(e => console.log(e))
+})
+
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: ${SERVER_PORT}`)))
 
 var playerSocket = io.of('/player-namespace')
 playerSocket.on('connection', socket => {
-  socket.on('broadcast message', input => {
-    console.log(input)
-    playerSocket.emit('generate response', input)
+  socket.on('blast message', input => {
+    playerSocket.emit('video response', input)
   });
 })
 
 var chatSocket = io.of('/chat-namespace')
 chatSocket.on('connection', socket => {
+
+  console.log(`New user has joined chat`)
+  socket.emit('chat response', {display_name: 'theServer', message: 'Welcome to the room!'})
+  socket.broadcast.emit('chat response', {display_name: 'theServer', message: 'Blank has joined the room!'})
+
   socket.on('blast message', input => {
-    chatSocket.emit('generate response', input)
+    chatSocket.emit('chat response', input)
   });
 })
 
 var queueSocket = io.of('/queue-namespace')
 queueSocket.on('connection', socket => {
   socket.on('blast message', input => {
-    queueSocket.emit('generate response', input)
+    queueSocket.emit('chat response', input)
   });
 })

@@ -14,7 +14,7 @@ class Queue extends Component {
     this.state = {
       queueInput: ''
     }
-    socket.on('generate response', data => {
+    socket.on('queue response', data => {
       this.props.addToQueue(data)
     })
   }

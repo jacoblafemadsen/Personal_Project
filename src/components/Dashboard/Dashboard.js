@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getUser } from '../../ducks/video_reducer'
 import Player from './Player/Player'
 import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
 import './Dashboard.css'
 
 class Dashboard extends Component {
-  componentDidMount() {
-    this.props.getUser()
-  }
   render() {
     return (
       <div className="Dashboard">
@@ -39,4 +35,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getUser})(Dashboard);
+export default connect(mapStateToProps)(Dashboard);

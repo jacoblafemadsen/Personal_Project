@@ -1,0 +1,39 @@
+.FindRoom {
+
+}
+.FR-top-bar {
+  width: 100%;
+  height: 50px;
+  padding: 0 50px;
+  background: aquamarine;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.FR-join-room {
+  width: 50%;
+  height: calc(100vh - 50px);
+  float:right;
+  background: blueviolet;
+}
+.FR-create-room {
+  width: 50%;
+  height: calc(100vh - 50px);
+  float: left;
+  background: aqua;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.FR-user-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 75px;
+  background: black;
+}
+.FR-user-img img {
+  border-radius: 75px;
+  width: 100%;
+}
