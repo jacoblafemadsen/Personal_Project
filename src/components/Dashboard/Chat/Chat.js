@@ -5,7 +5,7 @@ import letter from '../../../images/letter-white.svg'
 import ChatCard from './ChatCard/ChatCard'
 import './Chat.css'
 
-const socket = io('/chat-namespace')
+const socket = io()
 
 class Chat extends Component {
   constructor() {
