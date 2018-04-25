@@ -5,16 +5,14 @@
   width: 80%;
   height: 50px;
   background: aquamarine;
-  position: absolute;
-  left: 0;
-  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 25px;
 }
 .Dash-top button {
   width: 100px;
   height: 30px;
-  position: absolute;
-  right: 25px;
-  top: 10px;
   background: rgb(190, 0, 38);
   border-bottom: 2px solid black;
   border-top: 0;
@@ -25,13 +23,21 @@
 }
 .Dash-user-info-container{
   width: fit-content;
-  height: 45px;
-  background: rgb(16, 100, 209);
-  border-radius: 25px;
-  padding: 0 5px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Dash-user-info-banner {
+  height: 20px;
+  width: 100%;
+  border-radius: 10px;
+  background: #444444;
+  color: white;
   display: flex;
   flex-flow: row;
   align-items: center;
+  padding: 0 10px;
 }
 .Dash-user-img {
   width: 40px;
@@ -43,11 +49,11 @@
   border-radius: 25px;
 }
 #queue-list {
+  width: 25%;
+  height: calc(100vh - 50px);
   position: absolute;
   left: 0;
   top: 50px;
-  width: 20%;
-
 }
 #player {
   position: absolute;

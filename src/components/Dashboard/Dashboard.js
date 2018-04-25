@@ -20,9 +20,11 @@ class Dashboard extends Component {
           <Link to="/findroom"><button>Leave Room</button></Link>
           <a href='/logout'><button>Logout</button></a>
           <div className="Dash-user-info-container">
-            <p>{this.props.user.display_name}</p>
-            <div className="Dash-user-img">
-              <img src={this.props.user.img} alt=""/>
+            <div className="Dash-user-info-banner">
+              <p>{this.props.user.display_name}</p>
+              <div className="Dash-user-img">
+                <img src={this.props.user.img} alt=""/>
+              </div>
             </div>
           </div>
         </div>

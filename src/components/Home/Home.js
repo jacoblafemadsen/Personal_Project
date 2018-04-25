@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import logo from '../../images/vidgear3.svg'
-import imgWheel from '../../images/image-wheel.svg'
 import './Home.css'
 
 class Home extends Component {

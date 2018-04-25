@@ -10,7 +10,8 @@ const initialState = {
 
 const ADD_TO_QUEUE = 'ADD_TO_QUEUE',
       CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
-      GET_USER_INFO = 'GET_USER_INFO'
+      GET_USER_INFO = 'GET_USER_INFO',
+      NEXT_IN_QUEUE = 'NEXT_IN_QUEUE'
 
 
 export function addToQueue(videoUrl) {
@@ -22,7 +23,6 @@ export function addToQueue(videoUrl) {
       name: res.data.items[0].snippet.localized.title,
       img: res.data.items[0].snippet.thumbnails.default.url
     }
-    console.log(obj)
     return obj
   }).catch(e => console.log(e))
   return {
@@ -48,13 +48,18 @@ export function getUser() {
   }
 }
 
+export function nextInQueue() {
+  console.log('nextInQueue Fn is being hit')
+  return {type: NEXT_IN_QUEUE}
+}
+
 export default function reducer(state = initialState, action) {
   switch(action.type) {
 
     case ADD_TO_QUEUE + '_FULFILLED':
       if(state.currentVideo.id) {
-        var newArr = [...state.videoQueue, action.payload]
-        return Object.assign({}, state, {videoQueue: newArr})
+        var arrObj = [...state.videoQueue, action.payload]
+        return Object.assign({}, state, {videoQueue: arrObj})
       } else {
         return Object.assign({}, state, {currentVideo: action.payload})
       }
@@ -64,6 +69,12 @@ export default function reducer(state = initialState, action) {
 
     case GET_USER_INFO + '_FULFILLED':
       return Object.assign({}, state, {user: action.payload})
+
+    case NEXT_IN_QUEUE:      
+      var arrObj = [...state.videoQueue]
+      var curVid = arrObj.pop()
+      console.log(arrObj + '|  |' + curVid)
+      return Object.assign({}, state, {currentVideo: curVid, videoQueue: arrObj})
 
     default:
       return state

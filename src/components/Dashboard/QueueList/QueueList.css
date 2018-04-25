@@ -1,5 +1,38 @@
 .QueueList {
   width: 100%;
-  height: calc(100vh - 50px);
+  height: 100%;
   background: rgb(99, 99, 99);
+  padding: 10px;
+}
+
+.Queue-card {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  margin-bottom: 10px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  border-radius: 10px;
+  font-size: 12pt;
+}
+.Queue-card p {
+  margin-top: 5px;
+}
+.Queue-card-img {
+  width: 100px;
+  height: 57px;
+  margin-right: 10px;
+}
+.Queue-card-img img {
+  height: 56px;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+#currentVid {
+  background: #444444;
+  border: 1px solid aquamarine;
+}
+#queueVid {
+  background: #444444;
 }

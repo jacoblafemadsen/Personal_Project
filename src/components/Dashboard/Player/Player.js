@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
 import { connect } from 'react-redux'
+import { nextInQueue } from '../../../ducks/video_reducer'
 import io from 'socket.io-client'
 
 const socket = io('/player-namespace')
@@ -49,7 +50,8 @@ class Player extends Component {
           opts={opts}         
           onPlay={() => this.emitPlayerStateChange('play')}
           onPause={() => this.emitPlayerStateChange('pause')}
-          onReady={ e => this.putEventOnState(e)}
+          onEnd={() => this.props.nextInQueue()}
+          onReady={e => this.putEventOnState(e)}
         />
         <h1>{`X6CXr-41SVA`}</h1>
       </div>
@@ -63,4 +65,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Player)
+export default connect(mapStateToProps, {nextInQueue})(Player)
