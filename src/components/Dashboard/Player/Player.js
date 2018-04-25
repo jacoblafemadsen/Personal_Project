@@ -39,7 +39,9 @@ class Player extends Component {
       playerVars: {
         autoplay: 0,
         color: 'white',
-        rel: 0
+        rel: 0,
+        controls: 0,
+        info: 0
       }
     };
     return (
@@ -48,11 +50,12 @@ class Player extends Component {
           className='player'
           videoId={this.props.currentVideo.id}
           opts={opts}         
-          onPlay={() => this.emitPlayerStateChange('play')}
-          onPause={() => this.emitPlayerStateChange('pause')}
           onEnd={() => this.props.nextInQueue()}
           onReady={e => this.putEventOnState(e)}
         />
+        <button onClick={() => this.emitPlayerStateChange('pause')}>Pause</button>
+        <button onClick={() => this.emitPlayerStateChange('play')}>Play</button>
+
         <h1>{`X6CXr-41SVA`}</h1>
       </div>
     );
