@@ -20,6 +20,7 @@ class Player extends Component {
       res === '-10' ? this.seekToLocation(-10) : ''
       res === '10' ? this.seekToLocation(10) : ''
       res === '60' ? this.seekToLocation(60) : ''
+      res === 'next' ? this.next() : ''
     })
     this.putEventOnState = this.putEventOnState.bind(this)
 
@@ -29,6 +30,10 @@ class Player extends Component {
   }
   pause() {
     this.state.stateEvent.pauseVideo()
+  }
+  next() {
+    this.setState({btnStatus: 'play'})
+    this.props.nextInQueue()
   }
   emitPlayerStateChange(name) {
     socket.emit('broadcast message', name)
@@ -58,7 +63,7 @@ class Player extends Component {
           className='player'
           videoId={this.props.currentVideo.id}
           opts={opts}         
-          onEnd={() => this.props.nextInQueue()}
+          onEnd={() => this.next()}
           onReady={e => this.putEventOnState(e)}
         />
         <button onClick={() => {
@@ -74,6 +79,7 @@ class Player extends Component {
         <button onClick={() => this.emitPlayerStateChange('-10')}>-10</button>
         <button onClick={() => this.emitPlayerStateChange('10')}>10</button>
         <button onClick={() => this.emitPlayerStateChange('60')}>60</button>
+        <button onClick={() => this.emitPlayerStateChange('next')}>next video</button>
       </div>
     );
   }
