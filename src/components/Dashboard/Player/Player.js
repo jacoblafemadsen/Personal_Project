@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { nextInQueue } from '../../../ducks/video_reducer'
 import io from 'socket.io-client'
 
-const socket = io('/player-namespace')
+const socket = io()
 
 class Player extends Component {
   constructor() {

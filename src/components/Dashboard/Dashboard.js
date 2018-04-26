@@ -6,6 +6,7 @@ import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
 import './Dashboard.css'
 
+
 class Dashboard extends Component {
   render() {
     return (
