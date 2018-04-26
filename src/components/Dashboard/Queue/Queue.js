@@ -14,12 +14,13 @@ class Queue extends Component {
     this.state = {
       queueInput: ''
     }
-    socket.on('queue response', data => {
+  }
+  componentDidMount() {
+    socket.on(`queue-${this.props.user.rooms_id}`, data => {
       console.log(data)
       this.props.addToQueue(data)
     })
   }
-
   updateQueueInput(queueInput) {
     this.setState({queueInput})
   }
@@ -58,7 +59,8 @@ class Queue extends Component {
 function mapStateToProps(state) {
   return {
     currentVideo: state.currentVideo,
-    videoQueue: state.videoQueue
+    videoQueue: state.videoQueue,
+    user: state.user
   }
 }
 

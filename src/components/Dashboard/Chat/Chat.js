@@ -8,20 +8,23 @@ import './Chat.css'
 const socket = io()
 
 class Chat extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state ={
       messages: [],
       newMessage: ''
     }
-    socket.on('chat response', data => {
+  }
+  componentDidMount(){
+    socket.on(`chat-${this.props.user.rooms_id}`, data => {
       const messages = [...this.state.messages, data]
       this.setState({messages})
     })
+    console.log(`chat-${this.props.user.rooms_id}`)
   }
 
   sendMessage() {
-    socket.emit('chat message', {display_name: this.props.user.display_name, img: this.props.user.img, message: this.state.newMessage})
+    socket.emit('chat message', {rooms_id: this.props.user.rooms_id, display_name: this.props.user.display_name, img: this.props.user.img, message: this.state.newMessage})
     this.setState({newMessage: ''})
   }
 

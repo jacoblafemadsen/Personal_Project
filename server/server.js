@@ -113,8 +113,13 @@ io.on('connection', socket => {
   // });
 
   socket.on(`chat message`, input => {
-    console.log(input)
-    io.emit('chat response', input)
+    let { rooms_id, display_name, img, message } = input
+    let responseObj = {
+      display_name: display_name,
+      img: img,
+      message: message
+    }
+    io.emit(`chat-${rooms_id}`, responseObj)
   });
 
   socket.on(`video message`, input => {

@@ -7,13 +7,16 @@ import io from 'socket.io-client'
 const socket = io()
 
 class Player extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       stateEvent: {},
       btnStatus: 'play' 
     }
-    socket.on('video response', res => {
+    this.putEventOnState = this.putEventOnState.bind(this)
+  }
+  componentDidMount() {
+    socket.on(`video-${this.props.user.rooms_id}`, res => {
       res === 'play' ? this.play() : ''
       res === 'pause' ? this.pause() : ''
       res === '-60' ? this.seekToLocation(-60) : ''
@@ -22,8 +25,6 @@ class Player extends Component {
       res === '60' ? this.seekToLocation(60) : ''
       res === 'next' ? this.next() : ''
     })
-    this.putEventOnState = this.putEventOnState.bind(this)
-
   }
   play() {
     this.state.stateEvent.playVideo()
@@ -88,6 +89,7 @@ class Player extends Component {
 function mapStateToProps(state) {
   return {
     currentVideo: state.currentVideo,
+    user: state.user
   }
 }
 
