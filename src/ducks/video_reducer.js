@@ -2,35 +2,18 @@
 import axios from 'axios'
 
 const initialState = {
-  currentVideo: {},
   videoQueue: [],
   videoCurrentState: 4,
   user: {}
 }
 
-const ADD_TO_QUEUE = 'ADD_TO_QUEUE',
-      CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
+const CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
       GET_USER_INFO = 'GET_USER_INFO',
       NEXT_IN_QUEUE = 'NEXT_IN_QUEUE',
-      JOIN_ROOM = 'JOIN_ROOM'
+      JOIN_ROOM = 'JOIN_ROOM',
+      GET_ROOM_QUEUE = 'GET_ROOM_QUEUE',
+      DELETE_VIDEO = 'DELETE_VIDEO'
 
-
-export function addToQueue(videoUrl) {
-  var vidId = videoUrl
-  vidId.length > 11 ? vidId = vidId.substr((vidId.search(/watch\?v=/) + 8), 11) : vidId = videoUrl
-  var videoObj = axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${vidId}&key=${process.env.REACT_APP_YOUTUBE}&part=snippet,statistics`).then(res => {
-    var obj = {
-      id: vidId, 
-      name: res.data.items[0].snippet.localized.title,
-      img: res.data.items[0].snippet.thumbnails.default.url
-    }
-    return obj
-  }).catch(e => console.log(e))
-  return {
-    type: ADD_TO_QUEUE,
-    payload: videoObj
-  }
-}
 
 export function changeVideoState(videoState) {
   return {
@@ -54,7 +37,7 @@ export function nextInQueue() {
 }
 
 export function joinRoom(idObj) {
-  var updatedUser = axios.put(`/api/joinroom/${idObj.user_id}`, {room_id: idObj.room_id}).then(res => {
+  var updatedUser = axios.put(`/api/users/${idObj.user_id}`, {room_id: idObj.room_id}).then(res => {
     return res.data
   })
   return {
@@ -65,17 +48,23 @@ export function joinRoom(idObj) {
     }
   }
 }
+export function getRoomQueue(queueArr) {
+  return {
+    type: GET_ROOM_QUEUE,
+    payload: queueArr
+  }
+}
+
+export function deleteVideo(id) {
+  axios.delete(`/api/queue/${id}`)
+  return {
+    type: DELETE_VIDEO,
+    payload: id
+  }
+}
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
-
-    case ADD_TO_QUEUE + '_FULFILLED':
-      if(state.currentVideo.id) {
-        var arrObj = [...state.videoQueue, action.payload]
-        return Object.assign({}, state, {videoQueue: arrObj})
-      } else {
-        return Object.assign({}, state, {currentVideo: action.payload})
-      }
 
     case CHANGE_VIDEO_STATE:
       return Object.assign({}, state, {videoCurrentState: action.payload})
@@ -85,8 +74,8 @@ export default function reducer(state = initialState, action) {
 
     case NEXT_IN_QUEUE:      
       var arrObj = [...state.videoQueue]
-      var curVid = arrObj.pop()
-      return Object.assign({}, state, {currentVideo: curVid, videoQueue: arrObj})
+      arrObj.pop()
+      return Object.assign({}, state, {videoQueue: arrObj})
 
     case JOIN_ROOM + '_PENDING':
       let newUser = Object.assign({}, state.user)
@@ -95,6 +84,12 @@ export default function reducer(state = initialState, action) {
 
     case JOIN_ROOM + '_FULFILLED':
       return Object.assign({}, state, {user: action.payload})
+
+    case  GET_ROOM_QUEUE:
+      return Object.assign({}, state, {videoQueue: action.payload})
+
+    case DELETE_VIDEO:
+      return Object.assign({}, state)
 
     default:
       return state

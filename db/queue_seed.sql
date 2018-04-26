@@ -1,7 +1,8 @@
 CREATE TABLE IF NOT EXISTS queue (
     id SERIAL PRIMARY KEY,
+    video_id VARCHAR(20),
     name TEXT,
-    vid_length INTEGER,
-    img TEXT,
-    users_id INTEGER REFERENCES users(id)
+    video_img TEXT,
+    user_img TEXT,
+    rooms_id INTEGER REFERENCES rooms(id)
 )

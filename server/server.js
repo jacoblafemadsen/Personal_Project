@@ -6,6 +6,7 @@ const app = require('express')(),
       passport = require('passport'),
       Auth0Strategy = require('passport-auth0'),
       massive = require('massive')
+      ctrl = require('./controller')
 
 app.use(bodyParser.json())
 
@@ -65,42 +66,14 @@ app.get('/auth/callback', passport.authenticate('auth0', {
   failureRedirect: 'http://localhost:3000/#/'
 }))
 
-app.get('/auth/me', (req, res) => {
-  if(req.user.id) {
-    res.status(200).send(req.user)
-  } else {
-    res.status(401).send()
-  }
-})
-
-app.get('/logout', (req, res) => {
-  req.logOut()
-  res.redirect('http://localhost:3000/#/')
-})
-
-app.post('/api/makeroom', (req, res) => {
-  const db = app.get('db')
-  const { name, password, made_by } = req.body
-  db.create_room([name, password, made_by])
-    .then(room => res.status(200).send(room[0]))
-    .catch(() => res.status(500).send())
-})
-
-app.put(`/api/joinroom/:id`, (req, res) => {
-  const db = app.get('db')
-  const room_id = req.body.room_id
-  const id = req.params.id
-  db.update_user([id, room_id])
-    .then(user => res.status(200).send(user[0]))
-    .catch(() => res.status(500).send())
-})
-
-app.get(`/api/rooms`, (req, res) => {
-  const db = app.get('db')
-  db.get_rooms()
-    .then(rooms => res.status(200).send(rooms))
-    .catch(() => res.status(500).send())
-})
+app.get(`/auth/me`, ctrl.authMe)
+app.get(`/logout`, ctrl.logout)
+app.post(`/api/rooms`, ctrl.createRoom)
+app.put(`/api/users/:id`, ctrl.updateUser)
+app.get(`/api/rooms`, ctrl.getRooms)
+app.get(`/api/queue/:id`, ctrl.getRoomsQueue)
+app.post(`/api/queue`, ctrl.addToQueue)
+app.delete(`/api/queue/:id`, ctrl.deleteFromQueue)
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: ${SERVER_PORT}`)))
 
@@ -121,6 +94,6 @@ io.on('connection', socket => {
   });
 
   socket.on(`queue message`, input => {
-    io.emit(`queue-${input.rooms_id}`, input.queueInput)
+    io.emit(`queue-${input.user.rooms_id}`, input)
   });
 })

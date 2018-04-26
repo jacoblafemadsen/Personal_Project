@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
 import { connect } from 'react-redux'
-import { nextInQueue } from '../../../ducks/video_reducer'
+import { nextInQueue, deleteVideo } from '../../../ducks/video_reducer'
 import io from 'socket.io-client'
 
 const socket = io()
@@ -34,6 +34,7 @@ class Player extends Component {
   }
   next() {
     this.setState({btnStatus: 'play'})
+    this.props.deleteVideo(this.props.videoQueue[0].id)
     this.props.nextInQueue()
   }
   emitPlayerStateChange(name) {
@@ -62,7 +63,7 @@ class Player extends Component {
       <div className="Player">
         <YouTube
           className='player'
-          videoId={this.props.currentVideo.id}
+          videoId={this.props.videoQueue[0] ? this.props.videoQueue[0].video_id : ''}
           opts={opts}         
           onEnd={() => this.next()}
           onReady={e => this.putEventOnState(e)}
@@ -88,9 +89,9 @@ class Player extends Component {
 
 function mapStateToProps(state) {
   return {
-    currentVideo: state.currentVideo,
+    videoQueue: state.videoQueue,
     user: state.user
   }
 }
 
-export default connect(mapStateToProps, {nextInQueue})(Player)
+export default connect(mapStateToProps, {nextInQueue, deleteVideo})(Player)

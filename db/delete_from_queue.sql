@@ -1,0 +1,2 @@
+DELETE FROM queue
+WHERE id = $1

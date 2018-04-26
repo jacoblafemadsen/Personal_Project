@@ -20,7 +20,6 @@ class Chat extends Component {
       const messages = [...this.state.messages, data]
       this.setState({messages})
     })
-    console.log(`chat-${this.props.user.rooms_id}`)
   }
 
   sendMessage() {
