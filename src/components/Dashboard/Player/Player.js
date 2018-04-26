@@ -37,7 +37,7 @@ class Player extends Component {
     this.props.nextInQueue()
   }
   emitPlayerStateChange(name) {
-    socket.emit('video message', name)
+    socket.emit('video message', {rooms_id: this.props.user.rooms_id, name: name})
   }
   putEventOnState(event) {
     this.setState({stateEvent: event.target})

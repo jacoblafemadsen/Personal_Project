@@ -106,12 +106,6 @@ const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: 
 
 io.on('connection', socket => {
 
-  // socket.on('room', (room) => {
-  //   socket.join(`chat${room}`);
-  //   socket.join(`video${room}`);
-  //   socket.join(`queue${room}`);
-  // });
-
   socket.on(`chat message`, input => {
     let { rooms_id, display_name, img, message } = input
     let responseObj = {
@@ -123,12 +117,10 @@ io.on('connection', socket => {
   });
 
   socket.on(`video message`, input => {
-    console.log(input)
-    io.emit('video response', input)
+    io.emit(`video-${input.rooms_id}`, input.name)
   });
 
   socket.on(`queue message`, input => {
-    console.log(input)
-    io.emit('queue response', input)
+    io.emit(`queue-${input.rooms_id}`, input.queueInput)
   });
 })

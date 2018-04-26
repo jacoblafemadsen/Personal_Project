@@ -59,7 +59,10 @@ export function joinRoom(idObj) {
   })
   return {
     type: JOIN_ROOM,
-    payload: updatedUser
+    payload: updatedUser,
+    meta: {
+      newRooms_id: idObj.room_id
+    }
   }
 }
 
@@ -84,6 +87,11 @@ export default function reducer(state = initialState, action) {
       var arrObj = [...state.videoQueue]
       var curVid = arrObj.pop()
       return Object.assign({}, state, {currentVideo: curVid, videoQueue: arrObj})
+
+    case JOIN_ROOM + '_PENDING':
+      let newUser = Object.assign({}, state.user)
+      newUser.rooms_id = action.meta.newRooms_id
+      return Object.assign({}, state, {user: newUser})
 
     case JOIN_ROOM + '_FULFILLED':
       return Object.assign({}, state, {user: action.payload})

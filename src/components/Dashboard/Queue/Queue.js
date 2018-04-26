@@ -25,7 +25,7 @@ class Queue extends Component {
     this.setState({queueInput})
   }
   emitQueue() {
-    socket.emit('queue message', this.state.queueInput)
+    socket.emit('queue message', {rooms_id: this.props.user.rooms_id, queueInput: this.state.queueInput})
     this.setState({queueInput: ''})
   }
 
