@@ -1,11 +1,11 @@
 import React from 'react'
-import './QueueList.css'
+import './QueueCard.css'
 //TODO:
 function QueueCard(props) {
   return (
-    <div className="QueueList">
-      <div className="Queue-card" id="currentVid">
-        <div className="Queue-card-img">
+    <div className="QueueCard">
+      <div className="QueueCard-card" id="currentVid">
+        <div className="QueueCard-card-img">
           <img src={props.curVid.img} alt=""/>
         </div>
         <p>{props.curVid.name}</p>
@@ -13,8 +13,8 @@ function QueueCard(props) {
       {      
         props.vidArr.map(e => {
           return (
-            <div className="Queue-card" id="queueVid">
-              <div className="Queue-card-img">
+            <div className="QueueCard-card" id="queueVid">
+              <div className="QueueCard-card-img">
                 <img src={e.img} alt=""/>
               </div>
               <p>{e.name}</p>

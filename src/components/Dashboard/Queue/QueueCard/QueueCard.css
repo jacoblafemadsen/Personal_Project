@@ -1,9 +1,9 @@
-.QueueList {
+.QueueCard {
   width: 100%;
   height: 100%;
 }
 
-.Queue-card {
+.QueueCard-card {
   width: 100%;
   height: fit-content;
   display: flex;
@@ -13,15 +13,15 @@
   border-radius: 10px;
   font-size: 12pt;
 }
-.Queue-card p {
+.QueueCard-card p {
   margin-top: 5px;
 }
-.Queue-card-img {
+.QueueCard-card-img {
   width: 100px;
   height: 57px;
   margin-right: 10px;
 }
-.Queue-card-img img {
+.QueueCard-card-img img {
   height: 56px;
   width: 100%;
   border-bottom-left-radius: 10px;

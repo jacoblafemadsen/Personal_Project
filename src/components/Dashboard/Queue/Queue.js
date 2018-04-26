@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addToQueue } from '../../../ducks/video_reducer'
-import QueueList from './QueueList/QueueList'
+import QueueCard from './QueueCard/QueueCard'
 import io from 'socket.io-client'
 import plus from '../../../images/plus-white.svg'
 import './Queue.css'
@@ -47,7 +47,7 @@ class Queue extends Component {
         </div>
         
         <h1>{`X6CXr-41SVA`}</h1>
-        <QueueList 
+        <QueueCard 
           curVid={this.props.currentVideo} 
           vidArr={this.props.videoQueue}
         />
