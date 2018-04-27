@@ -38,14 +38,14 @@ export function nextInQueue() {
 }
 
 export function joinRoom(idObj) {
-  var updatedUser = axios.put(`/api/users/${idObj.user_id}`, {room_id: idObj.room_id}).then(res => {
+  var updatedUser = axios.put(`/api/users/${idObj.user_id}`, {rooms_id: idObj.rooms_id}).then(res => {
     return res.data
   })
   return {
     type: JOIN_ROOM,
     payload: updatedUser,
     meta: {
-      newRooms_id: idObj.room_id
+      newRooms_id: idObj.rooms_id
     }
   }
 }

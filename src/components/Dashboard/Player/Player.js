@@ -4,6 +4,7 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { nextInQueue } from '../../../ducks/video_reducer'
 import io from 'socket.io-client'
+import './Player.css'
 
 const socket = io()
 
@@ -73,18 +74,20 @@ class Player extends Component {
           onEnd={() => this.next()}
           onReady={e => this.putEventOnState(e)}
         />
-        <button onClick={() => {
-          if(this.state.btnStatus === 'pause') {
-            this.emitPlayerStateChange('pause')
-          } else if (this.state.btnStatus === 'play') {
-            this.emitPlayerStateChange('play')
-          }
-        }}>{this.state.btnStatus}</button>
-        <button onClick={() => this.emitPlayerStateChange('-60')}>-60</button>
-        <button onClick={() => this.emitPlayerStateChange('-10')}>-10</button>
-        <button onClick={() => this.emitPlayerStateChange('10')}>10</button>
-        <button onClick={() => this.emitPlayerStateChange('60')}>60</button>
-        <button onClick={() => this.emitPlayerStateChange('next')}>next video</button>
+        <div className="Player-controls">
+          <button onClick={() => this.emitPlayerStateChange('-60')}>-60</button>
+          <button onClick={() => this.emitPlayerStateChange('-10')}>-10</button>
+          <button onClick={() => {
+            if(this.state.btnStatus === 'pause') {
+              this.emitPlayerStateChange('pause')
+            } else if (this.state.btnStatus === 'play') {
+              this.emitPlayerStateChange('play')
+            }
+          }}>{this.state.btnStatus}</button>
+          <button onClick={() => this.emitPlayerStateChange('10')}>10</button>
+          <button onClick={() => this.emitPlayerStateChange('60')}>60</button>
+          <button onClick={() => this.emitPlayerStateChange('next')}>next video</button>
+        </div>
       </div>
     );
   }

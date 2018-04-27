@@ -11,7 +11,7 @@ function RoomCard(props) {
       <p>{`Created By: ${props.roomObj.made_by}`}</p>
       <Link to="/dashboard">
         <button
-          onClick={() => props.joinRoom({user_id: props.userId, room_id: props.roomObj.id})}
+          onClick={() => props.joinRoom({user_id: props.userId, rooms_id: props.roomObj.id})}
         >Join</button>
       </Link>
     </div>

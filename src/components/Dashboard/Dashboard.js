@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { joinRoom } from '../../ducks/video_reducer'
 import Player from './Player/Player'
 import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
@@ -12,8 +13,8 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard">
         <div className="Dash-top">
-          <Link to="/findroom"><button>Leave Room</button></Link>
-          <a href='/logout'><button>Logout</button></a>
+          <Link to="/findroom"><button onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}>Leave Room</button></Link>
+          <a href='/logout'><button onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}>Logout</button></a>
           <div className="Dash-user-info-container">
             <div className="Dash-user-info-banner">
               <p>{this.props.user.display_name}</p>
@@ -36,4 +37,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, {joinRoom})(Dashboard);

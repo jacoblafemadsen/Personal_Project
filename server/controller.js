@@ -19,16 +19,15 @@ module.exports = {
   },
   updateUser: (req, res) => {
     const db = req.app.get('db')
-    const room_id = req.body.room_id
+    const rooms_id = req.body.rooms_id
     const id = req.params.id
-    db.update_user([id, room_id])
+    db.update_user([id, rooms_id])
       .then(user => res.status(200).send(user[0]))
       .catch(() => res.status(500).send())
   },
   getRoomsQueue: (req, res) => {
     const db = req.app.get('db')
     const rooms_id = req.params.id
-    console.log(rooms_id)
     db.get_rooms_queue([rooms_id])
       .then(queue => res.status(200).send(queue))
       .catch(() => res.status(500).send())
@@ -43,7 +42,6 @@ module.exports = {
     const db = req.app.get('db')
     const { video_id, video_name, video_img } = req.body
     const { rooms_id, img } = req.body.user
-    console.log([video_id, video_name, video_img, img, rooms_id])
     db.add_to_queue([video_id, video_name, video_img, img, rooms_id])
       .then(queue => res.status(200).send(queue[0]))
       .catch(() => res.status(500).send())

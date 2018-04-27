@@ -1,0 +1,14 @@
+.Player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Player-controls {
+  margin-top: 10px;
+}
+.Player-controls button {
+  background: black;
+  border: none;
+  color: white;
+  margin: 0 5px;
+}

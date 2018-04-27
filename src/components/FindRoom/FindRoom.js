@@ -34,7 +34,7 @@ class FindRoom extends Component {
       made_by: this.props.user.display_name
     }
     axios.post('/api/rooms', roomObj).then(res => {
-      this.props.joinRoom({user_id: this.props.user.id, room_id: res.data.id})
+      this.props.joinRoom({user_id: this.props.user.id, rooms_id: res.data.id})
     }).catch(e => console.log(e))
   }
   render() {
