@@ -12,7 +12,8 @@ const CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
       NEXT_IN_QUEUE = 'NEXT_IN_QUEUE',
       JOIN_ROOM = 'JOIN_ROOM',
       GET_ROOM_QUEUE = 'GET_ROOM_QUEUE',
-      DELETE_VIDEO = 'DELETE_VIDEO'
+      DELETE_VIDEO = 'DELETE_VIDEO',
+      ADD_TO_QUEUE = 'ADD_TO_QUEUE'
 
 
 export function changeVideoState(videoState) {
@@ -63,6 +64,13 @@ export function deleteVideo(id) {
   }
 }
 
+export function addToQueue(obj) {
+  return {
+    type: ADD_TO_QUEUE,
+    payload: obj
+  }
+}
+
 export default function reducer(state = initialState, action) {
   switch(action.type) {
 
@@ -74,7 +82,7 @@ export default function reducer(state = initialState, action) {
 
     case NEXT_IN_QUEUE:      
       var arrObj = [...state.videoQueue]
-      arrObj.pop()
+      arrObj.shift()
       return Object.assign({}, state, {videoQueue: arrObj})
 
     case JOIN_ROOM + '_PENDING':
@@ -90,6 +98,11 @@ export default function reducer(state = initialState, action) {
 
     case DELETE_VIDEO:
       return Object.assign({}, state)
+
+    case ADD_TO_QUEUE:
+      var arrObj = [...state.videoQueue]
+      arrObj.push(action.payload)
+      return Object.assign({}, state, {videoQueue: arrObj})
 
     default:
       return state

@@ -45,7 +45,7 @@ module.exports = {
     const { rooms_id, img } = req.body.user
     console.log([video_id, video_name, video_img, img, rooms_id])
     db.add_to_queue([video_id, video_name, video_img, img, rooms_id])
-      .then(() => res.status(200).send())
+      .then(queue => res.status(200).send(queue[0]))
       .catch(() => res.status(500).send())
   },
   deleteFromQueue: (req, res) => {

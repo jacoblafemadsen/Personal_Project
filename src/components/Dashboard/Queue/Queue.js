@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRoomQueue } from '../../../ducks/video_reducer'
+import { getRoomQueue, addToQueue } from '../../../ducks/video_reducer'
 import axios from 'axios'
 import QueueCard from './QueueCard/QueueCard'
 import io from 'socket.io-client'
@@ -18,33 +18,31 @@ class Queue extends Component {
   }
   componentDidMount() {
     socket.on(`queue-${this.props.user.rooms_id}`, data => {
-      this.addToQueue(data)
+      this.props.addToQueue(data)
     })
     axios.get(`/api/queue/${this.props.user.rooms_id}`).then(res => {
       this.props.getRoomQueue(res.data)
     })
   }
-  updateQueueInput(queueInput) {
-    this.setState({queueInput})
-  }
   emitQueue() {
-    socket.emit('queue message', {user: this.props.user, queueInput: this.state.queueInput})
-    this.setState({queueInput: ''})
-  }
-
-  addToQueue(userQueueObj) {
-    var vidId = userQueueObj.queueInput
-
-    vidId.length > 11 ? vidId = vidId.substr((vidId.search(/watch\?v=/) + 8), 11) : vidId =  userQueueObj.queueInput
+    var vidId = this.state.queueInput
+    vidId.length > 11 ? vidId = vidId.substr((vidId.search(/watch\?v=/) + 8), 11) : ''
     axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${vidId}&key=${process.env.REACT_APP_YOUTUBE}&part=snippet,statistics`).then(res => {
       var obj = {
         video_id: vidId, 
         video_name: res.data.items[0].snippet.localized.title,
         video_img: res.data.items[0].snippet.thumbnails.default.url,
-        user: userQueueObj.user
+        user: this.props.user
       }
-      axios.post(`/api/queue`, obj)
+      axios.post(`/api/queue`, obj).then(res => {
+        socket.emit('queue message', res.data)
+        this.setState({queueInput: ''})
+      })
     })
+  }
+
+  updateQueueInput(queueInput) {
+    this.setState({queueInput})
   }
 
   render() {
@@ -70,9 +68,10 @@ class Queue extends Component {
           >
             <img src={plus} alt=""/>
           </button>
-        </div>
-        
+        </div>       
         <h1>{`X6CXr-41SVA`}</h1>
+        <h1>{`YENnaTK-sKs`}</h1>
+        <h1>{`ZzCVqLjLhUY`}</h1>
         {queueArr}
       </div>
     );
@@ -86,4 +85,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getRoomQueue})(Queue)
+export default connect(mapStateToProps, {getRoomQueue, addToQueue})(Queue)

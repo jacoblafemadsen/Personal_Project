@@ -26,22 +26,26 @@ class Player extends Component {
       res === 'next' ? this.next() : ''
     })
   }
-  play() {
-    this.state.stateEvent.playVideo()
-  }
-  pause() {
-    this.state.stateEvent.pauseVideo()
-  }
-  next() {
-    this.setState({btnStatus: 'play'})
-    this.props.deleteVideo(this.props.videoQueue[0].id)
-    this.props.nextInQueue()
-  }
+
   emitPlayerStateChange(name) {
     socket.emit('video message', {rooms_id: this.props.user.rooms_id, name: name})
   }
   putEventOnState(event) {
     this.setState({stateEvent: event.target})
+  }
+
+  play() {
+    this.state.stateEvent.playVideo()
+    this.setState({btnStatus: 'pause'})
+  }
+  pause() {
+    this.state.stateEvent.pauseVideo()
+    this.setState({btnStatus: 'play'})
+  }
+  next() {
+    this.setState({btnStatus: 'play'})
+    this.props.deleteVideo(this.props.videoQueue[0].id)
+    this.props.nextInQueue()
   }
   seekToLocation(num) {
     this.state.stateEvent.seekTo(this.state.stateEvent.getCurrentTime() + num)
@@ -71,10 +75,8 @@ class Player extends Component {
         <button onClick={() => {
           if(this.state.btnStatus === 'pause') {
             this.emitPlayerStateChange('pause')
-            this.setState({btnStatus: 'play'})
           } else if (this.state.btnStatus === 'play') {
             this.emitPlayerStateChange('play')
-            this.setState({btnStatus: 'pause'})
           }
         }}>{this.state.btnStatus}</button>
         <button onClick={() => this.emitPlayerStateChange('-60')}>-60</button>
