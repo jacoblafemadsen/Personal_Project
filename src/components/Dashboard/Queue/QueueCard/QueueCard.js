@@ -1,5 +1,9 @@
 import React from 'react'
+import axios from 'axios'
+import io from 'socket.io-client'
 import './QueueCard.css'
+
+const socket = io()
 
 function QueueCard(props) {
   var card
@@ -19,6 +23,11 @@ function QueueCard(props) {
           <img src={props.video.video_img} alt=""/>
         </div>
         <p>{props.video.name}</p>
+        <button onClick={() => {
+            axios.delete(`/api/queue/${props.video.id}`)
+            socket.emit('remove message', {index: props.index, rooms_id: props.video.rooms_id})
+          }
+        }>X</button>
       </div>
     )
   }

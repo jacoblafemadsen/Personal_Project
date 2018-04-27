@@ -12,8 +12,8 @@ const CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
       NEXT_IN_QUEUE = 'NEXT_IN_QUEUE',
       JOIN_ROOM = 'JOIN_ROOM',
       GET_ROOM_QUEUE = 'GET_ROOM_QUEUE',
-      DELETE_VIDEO = 'DELETE_VIDEO',
-      ADD_TO_QUEUE = 'ADD_TO_QUEUE'
+      ADD_TO_QUEUE = 'ADD_TO_QUEUE',
+      DELETE_VIDEO = 'DELETE_VIDEO'
 
 
 export function changeVideoState(videoState) {
@@ -56,18 +56,17 @@ export function getRoomQueue(queueArr) {
   }
 }
 
-export function deleteVideo(id) {
-  axios.delete(`/api/queue/${id}`)
-  return {
-    type: DELETE_VIDEO,
-    payload: id
-  }
-}
-
 export function addToQueue(obj) {
   return {
     type: ADD_TO_QUEUE,
     payload: obj
+  }
+}
+
+export function deleteVideo(index) {
+  return {
+    type: DELETE_VIDEO,
+    payload: index
   }
 }
 
@@ -96,12 +95,14 @@ export default function reducer(state = initialState, action) {
     case  GET_ROOM_QUEUE:
       return Object.assign({}, state, {videoQueue: action.payload})
 
-    case DELETE_VIDEO:
-      return Object.assign({}, state)
-
     case ADD_TO_QUEUE:
       var arrObj = [...state.videoQueue]
       arrObj.push(action.payload)
+      return Object.assign({}, state, {videoQueue: arrObj})
+
+    case DELETE_VIDEO:
+      var arrObj = [...state.videoQueue]
+      arrObj.splice(action.payload, 1)
       return Object.assign({}, state, {videoQueue: arrObj})
 
     default:

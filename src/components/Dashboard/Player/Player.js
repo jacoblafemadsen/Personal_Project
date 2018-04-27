@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import YouTube from 'react-youtube'
+import axios from 'axios'
 import { connect } from 'react-redux'
-import { nextInQueue, deleteVideo } from '../../../ducks/video_reducer'
+import { nextInQueue } from '../../../ducks/video_reducer'
 import io from 'socket.io-client'
 
 const socket = io()
@@ -44,7 +45,7 @@ class Player extends Component {
   }
   next() {
     this.setState({btnStatus: 'play'})
-    this.props.deleteVideo(this.props.videoQueue[0].id)
+    axios.delete(`/api/queue/${this.props.videoQueue[0].id}`)
     this.props.nextInQueue()
   }
   seekToLocation(num) {
@@ -96,4 +97,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {nextInQueue, deleteVideo})(Player)
+export default connect(mapStateToProps, {nextInQueue})(Player)
