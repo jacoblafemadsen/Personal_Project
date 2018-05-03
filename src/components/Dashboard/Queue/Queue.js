@@ -76,9 +76,6 @@ class Queue extends Component {
             <img src={plus} alt=""/>
           </button>
         </div>       
-        <h1>{`X6CXr-41SVA`}</h1>
-        <h1>{`YENnaTK-sKs`}</h1>
-        <h1>{`ZzCVqLjLhUY`}</h1>
         {queueArr}
       </div>
     );

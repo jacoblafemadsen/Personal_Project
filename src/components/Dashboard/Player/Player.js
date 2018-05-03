@@ -82,10 +82,10 @@ class Player extends Component {
         />
         <div className="Player-controls">
           <button onClick={() => this.emitPlayerStateChange('-60')}>
-            <img scr={back60} alt=""/>
+            <img src={back60} alt=""/>
           </button>
           <button onClick={() => this.emitPlayerStateChange('-10')}>
-            <img scr={back10} alt=""/>
+            <img src={back10} alt=""/>
           </button>
           <button onClick={() => {
             if(this.state.btnStatus === 'pause') {
@@ -97,10 +97,10 @@ class Player extends Component {
             <img src={this.state.btnStatus === 'play' ? play_icon : pause_icon} alt=""/>
           </button>
           <button onClick={() => this.emitPlayerStateChange('10')}>
-            <img scr={forward10} alt=""/>
+            <img src={forward10} alt=""/>
           </button>
           <button onClick={() => this.emitPlayerStateChange('60')}>
-            <img scr={forward60} alt=""/>
+            <img src={forward60} alt=""/>
           </button>
           <button onClick={() => this.emitPlayerStateChange('next')}>next video</button>
           <button>-</button>

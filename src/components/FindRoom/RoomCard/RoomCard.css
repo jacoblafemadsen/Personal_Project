@@ -1,0 +1,77 @@
+.RoomCard {
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+
+.RoomCard button {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 15px;
+  background: aquamarine;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#RoomCard-btn1 {
+  float: right;
+}
+
+.RoomCard button:hover {
+  box-shadow: 3px 5px #444444;
+}
+
+.RoomCard input {
+  width: 50%;
+  height: 20px;
+  border: none;
+  margin-right: 5px;
+  padding: 0 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 15px; 
+}
+
+#RoomCard-p1 {
+  font-family: 'Comfortaa', cursive;
+  font-size: 30px;
+  line-height: 30px; 
+  margin-bottom: 5px;
+}
+#RoomCard-p2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 15px; 
+  margin-bottom: 5px;
+}
+
+.RoomCard:hover {
+  background: rgb(90, 90, 90);
+}
+
+#RoomCard-btnInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#RoomCard-btnInput p {
+  font-size: 15px;
+  line-height: 15px; 
+  margin-right: 5px;
+}
+
+.RoomCard-on {
+  display: block;
+}
+
+.RoomCard-off {
+  display: none;
+}

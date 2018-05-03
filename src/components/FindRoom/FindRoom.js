@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { getUser, joinRoom } from '../../ducks/video_reducer'
 import './FindRoom.css'
 import RoomCard from './RoomCard/RoomCard';
+import logo from '../../images/vidgear4.svg'
 
 class FindRoom extends Component {
   constructor() {
@@ -49,31 +50,38 @@ class FindRoom extends Component {
     return (
       <div className="FindRoom">
         <div className="FR-top-bar">
-          <Link to='/'><button>home</button></Link>
-          <Link to='/dashboard'><button>DashBoard</button></Link>
+          <Link to='/'><button>
+            <img src={logo} alt=""/>
+          </button></Link>
         </div>
         <div className="FR-join-room">
+          <div className="FR-join-room-title">
+            <p>Join a room</p>
+          </div>
           {roomArr}
         </div>
         <div className="FR-create-room">
-          <div className="FR-user-img">
-            <img src={this.props.user.img} alt=""/>
+          <p>Create a room</p>
+          <div className="FR-create-room-card">
+            <div className="FR-user-img">
+              <img src={this.props.user.img} alt=""/>
+            </div>
+            <label>Room name</label>
+            <input 
+              type="text"
+              onChange={e => this.updateName(e.target.value)}
+              value={this.state.roomNameInpt}
+            />
+            <label>Password</label>
+            <input 
+              type="password"
+              onChange={e => this.updatePassword(e.target.value)}
+              value={this.state.passwordInpt}
+            />
+            <Link to='/dashboard'><button
+              onClick={() => this.prepForMakeRoom()}
+            >Make room</button></Link>
           </div>
-          <label>Room name</label>
-          <input 
-            type="text"
-            onChange={e => this.updateName(e.target.value)}
-            value={this.state.roomNameInpt}
-          />
-          <label>Password</label>
-          <input 
-            type="password"
-            onChange={e => this.updatePassword(e.target.value)}
-            value={this.state.passwordInpt}
-          />
-          <Link to='/dashboard'><button
-            onClick={() => this.prepForMakeRoom()}
-          >Make room</button></Link>
         </div>
       </div>
     );
