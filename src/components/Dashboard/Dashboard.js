@@ -24,7 +24,7 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
-        <div id='player'><Player /></div>
+        <div id='player'><Player/></div>
         <div id='queue'><Queue/></div>
         <div id='chat'><Chat/></div>
       </div>

@@ -4,11 +4,16 @@
   align-items: center;
 }
 .Player-controls {
-  margin-top: 10px;
+  height: 30px;
 }
 .Player-controls button {
-  background: black;
+  width: 30px;
+  height: 30px;
+  background: aquamarine;
   border: none;
-  color: white;
-  margin: 0 5px;
+  padding: 0;
+}
+.Player-controls img {
+  width: 30px;
+  height: 30px;
 }

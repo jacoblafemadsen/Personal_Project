@@ -3,6 +3,12 @@ import YouTube from 'react-youtube'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { nextInQueue } from '../../../ducks/video_reducer'
+import back60 from '../../../images/PlayerControls/back_60_button.svg'
+import back10 from '../../../images/PlayerControls/back_10_button.svg'
+import play_icon from '../../../images/PlayerControls/play_button.svg'
+import pause_icon from '../../../images/PlayerControls/pause_button.svg'
+import forward10 from '../../../images/PlayerControls/forward_10_button.svg'
+import forward60 from '../../../images/PlayerControls/forward_60_button.svg'
 import io from 'socket.io-client'
 import './Player.css'
 
@@ -75,18 +81,30 @@ class Player extends Component {
           onReady={e => this.putEventOnState(e)}
         />
         <div className="Player-controls">
-          <button onClick={() => this.emitPlayerStateChange('-60')}>-60</button>
-          <button onClick={() => this.emitPlayerStateChange('-10')}>-10</button>
+          <button onClick={() => this.emitPlayerStateChange('-60')}>
+            <img scr={back60} alt=""/>
+          </button>
+          <button onClick={() => this.emitPlayerStateChange('-10')}>
+            <img scr={back10} alt=""/>
+          </button>
           <button onClick={() => {
             if(this.state.btnStatus === 'pause') {
               this.emitPlayerStateChange('pause')
             } else if (this.state.btnStatus === 'play') {
               this.emitPlayerStateChange('play')
             }
-          }}>{this.state.btnStatus}</button>
-          <button onClick={() => this.emitPlayerStateChange('10')}>10</button>
-          <button onClick={() => this.emitPlayerStateChange('60')}>60</button>
+          }}>
+            <img src={this.state.btnStatus === 'play' ? play_icon : pause_icon} alt=""/>
+          </button>
+          <button onClick={() => this.emitPlayerStateChange('10')}>
+            <img scr={forward10} alt=""/>
+          </button>
+          <button onClick={() => this.emitPlayerStateChange('60')}>
+            <img scr={forward60} alt=""/>
+          </button>
           <button onClick={() => this.emitPlayerStateChange('next')}>next video</button>
+          <button>-</button>
+          <button>+</button>
         </div>
       </div>
     );

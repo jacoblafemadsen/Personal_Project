@@ -30,18 +30,22 @@ class Queue extends Component {
   emitQueue() {
     var vidId = this.state.queueInput
     vidId.length > 11 ? vidId = vidId.substr((vidId.search(/watch\?v=/) + 8), 11) : ''
-    axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${vidId}&key=${process.env.REACT_APP_YOUTUBE}&part=snippet,statistics`).then(res => {
-      var obj = {
-        video_id: vidId, 
-        video_name: res.data.items[0].snippet.localized.title,
-        video_img: res.data.items[0].snippet.thumbnails.default.url,
-        user: this.props.user
-      }
-      axios.post(`/api/queue`, obj).then(res => {
-        socket.emit('queue message', res.data)
-        this.setState({queueInput: ''})
+    if(vidId.length === 11) {
+      axios.get(`https://www.googleapis.com/youtube/v3/videos?id=${vidId}&key=${process.env.REACT_APP_YOUTUBE}&part=snippet,statistics`).then(res => {
+        var obj = {
+          video_id: vidId, 
+          video_name: res.data.items[0].snippet.localized.title,
+          video_img: res.data.items[0].snippet.thumbnails.default.url,
+          user: this.props.user
+        }
+        axios.post(`/api/queue`, obj).then(res => {
+          socket.emit('queue message', res.data)
+          this.setState({queueInput: ''})
+        })
       })
-    })
+    } else {
+      this.setState({queueInput: ''})
+    }
   }
 
   updateQueueInput(queueInput) {
