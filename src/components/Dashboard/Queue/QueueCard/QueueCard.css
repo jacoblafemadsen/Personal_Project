@@ -7,26 +7,27 @@
   height: fit-content;
   display: flex;
   margin-bottom: 10px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Comfortaa', cursive;
   color: white;
   border-radius: 10px;
-  font-size: 12pt;
+  font-size: 20px;
+  line-height: 20px;
 }
 .QueueCard-card p {
-  margin-top: 5px;
+  margin: 10px;
 }
 .QueueCard-card-img {
   width: fit-content;
-  margin-right: 10px;
 }
 .QueueCard-card-img img {
   height: 100%;
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
+  margin-right: 10px;
 }
 #currentVid {
   background: #444444;
-  border: 1px solid aquamarine;
+  border: 2px solid aquamarine;
 }
 #queueVid {
   background: #444444;
@@ -48,7 +49,8 @@
   background: #444444;
 }
 .QueueCard-user-img {
-  width: 30px;
+  width: fit-content;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-content: center;

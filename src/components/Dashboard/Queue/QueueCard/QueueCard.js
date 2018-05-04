@@ -14,8 +14,10 @@ function QueueCard(props) {
           <img src={props.video.video_img} alt=""/>
         </div>
         <p>{props.video.name}</p>
-        <div className="QueueCard-user-img">
-          <img src={props.video.user_img} alt=""/>
+        <div className="QueueCard-btnImg">
+          <div className="QueueCard-user-img">
+            <img src={props.video.user_img} alt=""/>
+          </div>
         </div>
       </div>
     )

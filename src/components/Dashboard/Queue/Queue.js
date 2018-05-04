@@ -4,7 +4,7 @@ import { getRoomQueue, addToQueue, deleteVideo } from '../../../ducks/video_redu
 import axios from 'axios'
 import QueueCard from './QueueCard/QueueCard'
 import io from 'socket.io-client'
-import plus from '../../../images/plus-white.svg'
+import plus from '../../../images/plus-black.svg'
 import './Queue.css'
 
 const socket = io()

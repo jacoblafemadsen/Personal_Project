@@ -3,31 +3,75 @@
 }
 .Dash-top {
   width: 80%;
-  height: 50px;
+  height: 75px;
   background: aquamarine;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 0 25px;
 }
-.Dash-top button {
-  width: 100px;
-  height: 30px;
-  background: rgb(190, 0, 38);
-  border-bottom: 2px solid black;
-  border-top: 0;
-  border-right: 2px solid black;
-  border-left: 0;
-  border-radius: 15px;
-  color: white;
+
+.Dash-top-logo button {
+  height: 75px;
+  width: 200px;
+  background: none;
+  border: none;
+  margin-top: 2px;
+  cursor: pointer;
 }
+.Dash-top-logo img {
+  height: 100%;
+}
+
+
 .Dash-user-info-container{
   width: fit-content;
   height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  margin-top: 20px;
 }
+
+.Dash-user-info-container button {
+  font-family: 'Roboto', sans-serif;
+  width: 100px;
+  height: 30px;
+  background: aquamarine;
+  border: none;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #444444;
+  min-width: inherit;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 10px calc(50% - 50px);
+  padding-bottom: 0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 1;
+}
+
+.dropdown:hover .Dash-user-info-banner {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 .Dash-user-info-banner {
   height: 20px;
   width: 100%;
@@ -38,11 +82,13 @@
   flex-flow: row;
   align-items: center;
   padding: 0 10px;
+  font-family: 'Comfortaa', cursive;
 }
 .Dash-user-img {
   width: 40px;
   height: 40px;
   margin-left: 5px;
+  z-index: 2;
 }
 .Dash-user-img img {
   width: 100%;
@@ -50,10 +96,10 @@
 }
 #queue {
   width: 25%;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 75px);
   position: absolute;
   left: 0;
-  top: 50px;
+  top: 75px;
 }
 #player {
   position: absolute;

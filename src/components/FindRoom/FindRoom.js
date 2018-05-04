@@ -80,7 +80,7 @@ class FindRoom extends Component {
             />
             <Link to='/dashboard'><button
               onClick={() => this.prepForMakeRoom()}
-            >Make room</button></Link>
+            >Make a room</button></Link>
           </div>
         </div>
       </div>

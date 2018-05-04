@@ -9,6 +9,8 @@ import play_icon from '../../../images/PlayerControls/play_button.svg'
 import pause_icon from '../../../images/PlayerControls/pause_button.svg'
 import forward10 from '../../../images/PlayerControls/forward_10_button.svg'
 import forward60 from '../../../images/PlayerControls/forward_60_button.svg'
+import volumeMinus from '../../../images/PlayerControls/minus-volume-button.svg'
+import volumePlus from '../../../images/PlayerControls/plus-volume-button.svg'
 import io from 'socket.io-client'
 import './Player.css'
 
@@ -19,7 +21,9 @@ class Player extends Component {
     super(props)
     this.state = {
       stateEvent: {},
-      btnStatus: 'play' 
+      btnStatus: 'play',
+      curVolume: 100,
+      mute: false
     }
     this.putEventOnState = this.putEventOnState.bind(this)
   }
@@ -103,8 +107,39 @@ class Player extends Component {
             <img src={forward60} alt=""/>
           </button>
           <button onClick={() => this.emitPlayerStateChange('next')}>next video</button>
-          <button>-</button>
-          <button>+</button>
+          <button 
+            onClick={() => {
+              var vol = this.state.stateEvent.getVolume() - 20
+              if(vol >= 0) {
+                this.state.stateEvent.setVolume(vol)
+                this.setState({curVolume: vol})
+              }
+            }}
+          >
+            <img src={volumeMinus} alt=""/>
+          </button>
+          <p>{this.state.curVolume}</p>
+          <button 
+            onClick={() => {
+              var vol = this.state.stateEvent.getVolume() + 20
+              if(vol <= 100) {
+                this.state.stateEvent.setVolume(vol)
+                this.setState({curVolume: vol})
+              }
+            }}
+          >
+            <img src={volumePlus} alt=""/>
+          </button>
+          <button onClick={() => {
+            if(this.state.mute) {
+              this.state.stateEvent.unMute()
+              this.setState({mute: false})
+            } else {
+              this.state.stateEvent.mute()
+              this.setState({mute: true})
+            }
+          }}
+          >{this.state.mute ? 'unmute' : 'mute'}</button>
         </div>
       </div>
     );
