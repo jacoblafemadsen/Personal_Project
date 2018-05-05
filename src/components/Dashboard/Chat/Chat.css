@@ -15,33 +15,29 @@
 .Chat_input {
   width: calc(100% - 90px);
   height: calc(10% - 20px);
-  border-bottom: 2px solid black;
-  border-top: 0;
-  border-right: 2px solid black;
-  border-left: 0;
   border-radius: 10px;
-  background: rgb(241, 241, 241);
+  background: white;
   overflow:hidden;
   resize: none;
   padding: 5px 10px;
   font-family: 'Roboto', sans-serif;
-  font-size: 10pt;
+  font-size: 15px;
+  line-height: 15px;
   position: absolute;
   bottom: 10px;
   left: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .Chat_send {
   background: #444444;
   width: 40px;
   height: 40px;
-  border-bottom: 2px solid black;
-  border-top: 0;
-  border-right: 2px solid black;
-  border-left: 0;
   border-radius: 20px;
   position: absolute;
   bottom: 10px;
   right: 10px;
+  border: none;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .Chat_send > img {
   width: 20px;

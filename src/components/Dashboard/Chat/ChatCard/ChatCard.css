@@ -1,18 +1,23 @@
 .ChatCard {
   padding-top: 10px;
 }
+
 .ChatCard_user_img {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   margin: 0 10px;
 }
+
 .ChatCard_user_img img {
   width: 100%;
-  border-radius: 10px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
 .ChatCard_message {
-  max-width: 70%;
+  max-width: 65%;
   width: fit-content;
+  height: fit-content;
   border-radius: 10px;
   white-space: pre-wrap;  
   white-space: -moz-pre-wrap;  
@@ -21,13 +26,15 @@
   word-wrap: break-word; 
   padding: 5px 10px;
   font-family: 'Roboto', sans-serif;
-  font-size: 10pt;
+  font-size: 15px;
+  line-height: 15px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
 .other {
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  
 }
 
 .main {

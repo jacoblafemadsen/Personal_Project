@@ -5,6 +5,7 @@
 }
 .Player-controls {
   height: 30px;
+  width: fit-content;
 }
 .Player-controls button {
   width: 30px;
