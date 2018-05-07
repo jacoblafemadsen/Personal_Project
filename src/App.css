@@ -1,1 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Comfortaa:700|Roboto:500');
+
+textarea:focus, input:focus, button:focus {
+  outline: none;
+}

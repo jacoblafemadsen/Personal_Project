@@ -9,13 +9,15 @@ function QueueCard(props) {
   var card
   if(props.index === 0) {
     card = (
-      <div className="QueueCard-card" style={{border: `2px solid ${props.color}`}}>
-        <div className="QueueCard-card-img">
-          <img src={props.video.video_img} alt=""/>
+      <div 
+        className={props.hide ? "QueueCard-card-hide" : "QueueCard-card"}
+      >
+        <div className={props.hide ? "QueueCard-card-img-hide" : "QueueCard-card-img"}>
+          <img src={props.video.video_img} alt="" style={{border: `3px solid ${props.color}`}}/>
         </div>
         <p>{props.video.name}</p>
-        <div className="QueueCard-btnImg">
-          <div className="QueueCard-user-img">
+        <div className={props.hide ? "QueueCard-btnImg-hide" : "QueueCard-btnImg"}>
+          <div className={props.hide ? "QueueCard-user-img" : "QueueCard-user-img"}>
             <img src={props.video.img} alt=""/>
           </div>
         </div>
@@ -23,18 +25,18 @@ function QueueCard(props) {
     )
   } else {
     card = (
-      <div className="QueueCard-card">
-        <div className="QueueCard-card-img">
+      <div className={props.hide ? "QueueCard-card-hide" : "QueueCard-card"}>
+        <div className={props.hide ? "QueueCard-card-img-hide" : "QueueCard-card-img"}>
           <img src={props.video.video_img} alt=""/>
         </div>
         <p>{props.video.name}</p>
-        <div className="QueueCard-btnImg">
+        <div className={props.hide ? "QueueCard-btnImg-hide" : "QueueCard-btnImg"}>
           <button onClick={() => {
               axios.delete(`/api/queue/${props.video.id}`)
               socket.emit('remove message', {index: props.index, rooms_id: props.rooms_id})
             }
           }>X</button>
-          <div className="QueueCard-user-img">
+          <div className={props.hide ? "QueueCard-user-img" : "QueueCard-user-img"}>
             <img src={props.video.img} alt=""/>
           </div>
         </div>

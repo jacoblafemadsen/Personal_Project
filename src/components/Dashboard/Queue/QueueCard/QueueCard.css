@@ -1,7 +1,6 @@
 .QueueCard {
   width: 100%;
 }
-
 .QueueCard-card {
   width: 100%;
   height: fit-content;
@@ -55,4 +54,39 @@
   height: 30px;
   border-radius: 15px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+
+.QueueCard-hide {
+  width: 100%;
+}
+.QueueCard-card-hide {
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.QueueCard-card-hide p {
+  display: none;
+}
+.QueueCard-card-img-hide {
+  width: fit-content;
+  height: fit-content;
+}
+.QueueCard-card-img-hide img {
+  height: 100%;
+  border-radius: 10px;
+}
+.QueueCard-btnImg-hide {
+  display: none;
+}
+.QueueCard-btnImg-hide button {
+  display: none;
+}
+.QueueCard-user-img-hide {
+  display: none;
+}
+.QueueCard-user-img-hide img {
+  display: none;
 }

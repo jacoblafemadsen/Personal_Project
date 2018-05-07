@@ -5,6 +5,7 @@ import axios from 'axios'
 import QueueCard from './QueueCard/QueueCard'
 import io from 'socket.io-client'
 import plus from '../../../images/plus-black.svg'
+import hamburger from '../../../images/hamburger-button.svg'
 import './Queue.css'
 
 const socket = io()
@@ -13,7 +14,8 @@ class Queue extends Component {
   constructor() {
     super()
     this.state = {
-      queueInput: ''
+      queueInput: '',
+      hide: true
     }
   }
   componentDidMount() {
@@ -64,19 +66,30 @@ class Queue extends Component {
             index={i}
             rooms_id={this.props.user.rooms_id}
             color={this.props.user.color}
+            hide={this.state.hide}
           />
         )
      })
     return (
-      <div className="Queue">
-        <div className="int-btn-container">
+      <div className={this.state.hide ? "Queue-hide" : "Queue"}>
+        <div className={this.state.hide ? "Queue-title-button-hide" : "Queue-title-button"}>
+          <p>Video Queue</p>
+          <button
+            style={this.state.hide ? {background: `${this.props.user.color}`} : {background: `rgb(99, 99, 99)`}}
+            onClick={() => this.setState({hide: !(this.state.hide)})}
+          >
+            <img src={hamburger} alt=""/>
+          </button>
+        </div>
+        <div className={this.state.hide ? "int-btn-container-hide" : "int-btn-container"}>
           <input
-            className="Queue_input"
+            placeholder="YouTube video id or full url"
+            className={this.state.hide ? "Queue_input-hide" : "Queue_input"}
             value={this.state.queueInput}
             onChange={(e) => this.updateQueueInput(e.target.value)}
           />
           <button 
-            className="Queue_add"
+            className={this.state.hide ? "Queue_add-hide" : "Queue_add"}
             style={{background: `${this.props.user.color}`}}
             onClick={() => this.emitQueue()}
           >
