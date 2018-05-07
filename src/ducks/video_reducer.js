@@ -103,6 +103,7 @@ export default function reducer(state = initialState, action) {
     case DELETE_VIDEO:
       var arrObj = [...state.videoQueue]
       arrObj.splice(action.payload, 1)
+      console.log(arrObj)
       return Object.assign({}, state, {videoQueue: arrObj})
 
     default:

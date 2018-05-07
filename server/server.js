@@ -41,11 +41,14 @@ passport.use(new Auth0Strategy({
 }, function(accessToken, refreshToken, extraPrams, profile, done) {
   const db = app.get('db')
   const { id, displayName, picture } = profile
-  db.find_user([id]).then(users => {
+  const img = picture, display_name = displayName, auth_id = id
+  db.find_user([auth_id]).then(users => {
     if(users[0]) {
       return done(null, users[0].id)
     } else {
-      db.create_user([displayName, picture, id])
+      var color = '#7fffd4'
+      console.log(display_name, img, color, auth_id)
+      db.create_user([display_name, img, color, auth_id])
         .then(createdUser => done(null, createdUser[0].id)).catch(e => console.log(e))
     }
   }).catch(e => console.log(e))
@@ -74,6 +77,7 @@ app.get(`/api/rooms`, ctrl.getRooms)
 app.get(`/api/queue/:id`, ctrl.getRoomsQueue)
 app.post(`/api/queue`, ctrl.addToQueue)
 app.delete(`/api/queue/:id`, ctrl.deleteFromQueue)
+app.get(`/api/queueitem/:id`, ctrl.getQueue)
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: ${SERVER_PORT}`)))
 
@@ -94,7 +98,7 @@ io.on('connection', socket => {
   });
 
   socket.on(`queue message`, input => {
-    io.emit(`queue-${input.rooms_id}`, input)
+    io.emit(`queue-${input.rooms_id}`, input.queue_id)
   });
   socket.on(`remove message`, input => {
     io.emit(`remove-${input.rooms_id}`, input.index)

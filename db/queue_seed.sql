@@ -3,6 +3,6 @@ CREATE TABLE IF NOT EXISTS queue (
     video_id VARCHAR(20),
     name TEXT,
     video_img TEXT,
-    user_img TEXT,
+    users_id INTEGER REFERENCES users(id),
     rooms_id INTEGER REFERENCES rooms(id)
 )

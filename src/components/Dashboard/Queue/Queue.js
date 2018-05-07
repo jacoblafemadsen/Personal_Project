@@ -17,10 +17,13 @@ class Queue extends Component {
     }
   }
   componentDidMount() {
-    socket.on(`queue-${this.props.user.rooms_id}`, data => {
-      this.props.addToQueue(data)
+    socket.on(`queue-${this.props.user.rooms_id}`, queue_id => {
+      axios.get(`/api/queueitem/${queue_id}`).then(res => {
+        this.props.addToQueue(res.data)
+      })
     })
     socket.on(`remove-${this.props.user.rooms_id}`, data => {
+      console.log(data)
       this.props.deleteVideo(data)
     })
     axios.get(`/api/queue/${this.props.user.rooms_id}`).then(res => {
@@ -36,10 +39,11 @@ class Queue extends Component {
           video_id: vidId, 
           video_name: res.data.items[0].snippet.localized.title,
           video_img: res.data.items[0].snippet.thumbnails.default.url,
-          user: this.props.user
+          users_id: this.props.user.id,
+          rooms_id: this.props.user.rooms_id
         }
         axios.post(`/api/queue`, obj).then(res => {
-          socket.emit('queue message', res.data)
+          socket.emit('queue message', {queue_id: res.data, rooms_id: this.props.user.rooms_id})
           this.setState({queueInput: ''})
         })
       })
@@ -58,6 +62,7 @@ class Queue extends Component {
           <QueueCard 
             video={e}
             index={i}
+            rooms_id={this.props.user.rooms_id}
           />
         )
      })

@@ -16,7 +16,7 @@ function QueueCard(props) {
         <p>{props.video.name}</p>
         <div className="QueueCard-btnImg">
           <div className="QueueCard-user-img">
-            <img src={props.video.user_img} alt=""/>
+            <img src={props.video.img} alt=""/>
           </div>
         </div>
       </div>
@@ -31,11 +31,11 @@ function QueueCard(props) {
         <div className="QueueCard-btnImg">
           <button onClick={() => {
               axios.delete(`/api/queue/${props.video.id}`)
-              socket.emit('remove message', {index: props.index, rooms_id: props.video.rooms_id})
+              socket.emit('remove message', {index: props.index, rooms_id: props.rooms_id})
             }
           }>X</button>
           <div className="QueueCard-user-img">
-            <img src={props.video.user_img} alt=""/>
+            <img src={props.video.img} alt=""/>
           </div>
         </div>
       </div>
