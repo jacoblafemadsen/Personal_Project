@@ -13,7 +13,8 @@ const CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
       JOIN_ROOM = 'JOIN_ROOM',
       GET_ROOM_QUEUE = 'GET_ROOM_QUEUE',
       ADD_TO_QUEUE = 'ADD_TO_QUEUE',
-      DELETE_VIDEO = 'DELETE_VIDEO'
+      DELETE_VIDEO = 'DELETE_VIDEO',
+      CHANGE_COLOR = 'CHANGE_COLOR'
 
 
 export function changeVideoState(videoState) {
@@ -70,6 +71,16 @@ export function deleteVideo(index) {
   }
 }
 
+export function changeColor(userAndColor) {
+  var updatedUser = axios.put(`/api/userscolor/${userAndColor.user_id}`, {color: userAndColor.color}).then(res => {
+    return res.data
+  })
+  return {
+    type: CHANGE_COLOR,
+    payload: updatedUser,
+  }
+}
+
 export default function reducer(state = initialState, action) {
   switch(action.type) {
 
@@ -105,6 +116,9 @@ export default function reducer(state = initialState, action) {
       arrObj.splice(action.payload, 1)
       console.log(arrObj)
       return Object.assign({}, state, {videoQueue: arrObj})
+
+    case CHANGE_COLOR + '_FULFILLED':
+      return Object.assign({}, state, {user: action.payload})
 
     default:
       return state

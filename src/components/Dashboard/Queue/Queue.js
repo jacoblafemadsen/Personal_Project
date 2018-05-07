@@ -63,6 +63,7 @@ class Queue extends Component {
             video={e}
             index={i}
             rooms_id={this.props.user.rooms_id}
+            color={this.props.user.color}
           />
         )
      })
@@ -76,6 +77,7 @@ class Queue extends Component {
           />
           <button 
             className="Queue_add"
+            style={{background: `${this.props.user.color}`}}
             onClick={() => this.emitQueue()}
           >
             <img src={plus} alt=""/>

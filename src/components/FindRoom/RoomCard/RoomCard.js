@@ -32,6 +32,7 @@ class RoomCard extends React.Component {
     return (
       <div className="RoomCard" onClick={() => this.setState({display: true})}>
         <button 
+          style={{background: `${this.props.user.color}`}}
           id="RoomCard-btn1"
           className={this.state.display ? "RoomCard-on" : "RoomCard-off"}
           onClick={() => setTimeout(() => this.setState({display: false}), 50)}
@@ -46,7 +47,8 @@ class RoomCard extends React.Component {
             value={this.state.input}
           />
           <button
-             className={this.state.display ? "RoomCard-on" : "RoomCard-off"}
+            style={{background: `${this.props.user.color}`}}
+            className={this.state.display ? "RoomCard-on" : "RoomCard-off"}
             onClick={() => this.join()}
           >Join</button>
         </div>
@@ -54,5 +56,10 @@ class RoomCard extends React.Component {
     )
   }
 }
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  }
+}
 
-export default connect(null, {joinRoom})(RoomCard)
+export default connect(mapStateToProps, {joinRoom})(RoomCard)

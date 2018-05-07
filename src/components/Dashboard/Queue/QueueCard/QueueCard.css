@@ -6,6 +6,7 @@
   width: 100%;
   height: fit-content;
   display: flex;
+  background: #444444;
   margin-bottom: 10px;
   font-family: 'Comfortaa', cursive;
   color: white;
@@ -25,13 +26,6 @@
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
   margin-right: 10px;
-}
-#currentVid {
-  background: #444444;
-  border: 2px solid aquamarine;
-}
-#queueVid {
-  background: #444444;
 }
 
 .QueueCard-btnImg {

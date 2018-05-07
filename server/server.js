@@ -46,8 +46,7 @@ passport.use(new Auth0Strategy({
     if(users[0]) {
       return done(null, users[0].id)
     } else {
-      var color = '#7fffd4'
-      console.log(display_name, img, color, auth_id)
+      var color = '#00FFFF'
       db.create_user([display_name, img, color, auth_id])
         .then(createdUser => done(null, createdUser[0].id)).catch(e => console.log(e))
     }
@@ -78,17 +77,19 @@ app.get(`/api/queue/:id`, ctrl.getRoomsQueue)
 app.post(`/api/queue`, ctrl.addToQueue)
 app.delete(`/api/queue/:id`, ctrl.deleteFromQueue)
 app.get(`/api/queueitem/:id`, ctrl.getQueue)
+app.put(`/api/userscolor/:id`, ctrl.changeColor)
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: ${SERVER_PORT}`)))
 
 io.on('connection', socket => {
 
   socket.on(`chat message`, input => {
-    let { rooms_id, display_name, img, message } = input
+    let { rooms_id, display_name, img, message, color } = input
     let responseObj = {
       display_name: display_name,
       img: img,
-      message: message
+      message: message,
+      color: color
     }
     io.emit(`chat-${rooms_id}`, responseObj)
   });

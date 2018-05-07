@@ -55,9 +55,16 @@ module.exports = {
   getQueue: (req, res) => {
     const db = req.app.get('db')
     const id = req.params.id
-    console.log(id)
     db.get_queue([id])
       .then(queue => res.status(200).send(queue[0]))
+      .catch(() => res.status(500).send())
+  },
+  changeColor: (req, res) => {
+    const db = req.app.get('db')
+    const color = req.body.color
+    const id = req.params.id
+    db.change_color([id, color])
+      .then(user => res.status(200).send(user[0]))
       .catch(() => res.status(500).send())
   }
 }

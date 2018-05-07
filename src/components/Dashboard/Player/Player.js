@@ -85,29 +85,42 @@ class Player extends Component {
           onReady={e => this.putEventOnState(e)}
         />
         <div className="Player-controls">
-          <button onClick={() => this.emitPlayerStateChange('-60')}>
+          <button 
+            style={{background: `${this.props.user.color}`}}
+            onClick={() => this.emitPlayerStateChange('-60')}>
             <img src={back60} alt=""/>
           </button>
-          <button onClick={() => this.emitPlayerStateChange('-10')}>
+          <button 
+            style={{background: `${this.props.user.color}`}}
+            onClick={() => this.emitPlayerStateChange('-10')}>
             <img src={back10} alt=""/>
           </button>
-          <button onClick={() => {
-            if(this.state.btnStatus === 'pause') {
-              this.emitPlayerStateChange('pause')
-            } else if (this.state.btnStatus === 'play') {
-              this.emitPlayerStateChange('play')
-            }
+          <button 
+            style={{background: `${this.props.user.color}`}}
+            onClick={() => {
+              if(this.state.btnStatus === 'pause') {
+                this.emitPlayerStateChange('pause')
+              } else if (this.state.btnStatus === 'play') {
+                this.emitPlayerStateChange('play')
+              }
           }}>
             <img src={this.state.btnStatus === 'play' ? play_icon : pause_icon} alt=""/>
           </button>
-          <button onClick={() => this.emitPlayerStateChange('10')}>
+          <button 
+            style={{background: `${this.props.user.color}`}}
+            onClick={() => this.emitPlayerStateChange('10')}>
             <img src={forward10} alt=""/>
           </button>
-          <button onClick={() => this.emitPlayerStateChange('60')}>
+          <button
+            style={{background: `${this.props.user.color}`}}
+            onClick={() => this.emitPlayerStateChange('60')}>
             <img src={forward60} alt=""/>
           </button>
-          <button onClick={() => this.emitPlayerStateChange('next')}>next video</button>
           <button 
+            style={{background: `${this.props.user.color}`}}
+            onClick={() => this.emitPlayerStateChange('next')}>next video</button>
+          <button 
+            style={{background: `${this.props.user.color}`}}
             onClick={() => {
               var vol = this.state.stateEvent.getVolume() - 20
               if(vol >= 0) {
@@ -120,6 +133,7 @@ class Player extends Component {
           </button>
           <p>{this.state.curVolume}</p>
           <button 
+            style={{background: `${this.props.user.color}`}}
             onClick={() => {
               var vol = this.state.stateEvent.getVolume() + 20
               if(vol <= 100) {
@@ -130,14 +144,16 @@ class Player extends Component {
           >
             <img src={volumePlus} alt=""/>
           </button>
-          <button onClick={() => {
-            if(this.state.mute) {
-              this.state.stateEvent.unMute()
-              this.setState({mute: false})
-            } else {
-              this.state.stateEvent.mute()
-              this.setState({mute: true})
-            }
+          <button 
+            style={{background: `${this.props.user.color}`}}
+            onClick={() => {
+              if(this.state.mute) {
+                this.state.stateEvent.unMute()
+                this.setState({mute: false})
+              } else {
+                this.state.stateEvent.mute()
+                this.setState({mute: true})
+              }
           }}
           >{this.state.mute ? 'unmute' : 'mute'}</button>
         </div>

@@ -23,7 +23,15 @@ class Chat extends Component {
   }
 
   sendMessage() {
-    socket.emit('chat message', {rooms_id: this.props.user.rooms_id, display_name: this.props.user.display_name, img: this.props.user.img, message: this.state.newMessage})
+    console.log(this.props.user.color)
+    var obj = {
+      rooms_id: this.props.user.rooms_id,
+      display_name: this.props.user.display_name,
+      img: this.props.user.img,
+      color: this.props.user.color,
+      message: this.state.newMessage
+    }
+    socket.emit('chat message', obj)
     this.setState({newMessage: ''})
   }
 
@@ -33,10 +41,12 @@ class Chat extends Component {
 
   render() {
     const messages = this.state.messages.map(e => {
+      console.log(e.color)
       return (
         <ChatCard 
           userObj={e}
           currentUser={this.props.user.display_name}
+          color={this.props.user.color}
         />
       )
     })
@@ -52,6 +62,7 @@ class Chat extends Component {
           onChange={e => this.updateInput(e.target.value)}
         />
         <button
+          style={{background: `${this.props.user.color}`}}
           className="Chat_send"
           onClick={() => this.sendMessage()}
         >

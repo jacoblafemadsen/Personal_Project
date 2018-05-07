@@ -13,7 +13,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="Dashboard">
-        <div className="Dash-top">
+        <div className="Dash-top" style={{background: `${this.props.user.color}`}}>
           <div className="Dash-top-logo">
             <a href='/logout'><button  onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}>
               <img src={logo} alt=""/>
@@ -27,8 +27,18 @@ class Dashboard extends Component {
               </div>
             </div>
             <div className='dropdown-content'>
-              <a href='/logout'><button onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}>Logout</button></a>
-              <Link to='/findroom'><button onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}>Leave Room</button></Link>
+              <a href='/logout'>
+                <button 
+                  onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}
+                  style={{background: `${this.props.user.color}`}}
+                >Logout</button>
+              </a>
+              <Link to='/findroom'>
+                <button 
+                  onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}
+                  style={{background: `${this.props.user.color}`}}
+                >Leave Room</button>
+              </Link>
             </div>
           </div>
         </div>

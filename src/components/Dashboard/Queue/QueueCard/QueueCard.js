@@ -9,7 +9,7 @@ function QueueCard(props) {
   var card
   if(props.index === 0) {
     card = (
-      <div className="QueueCard-card" id="currentVid">
+      <div className="QueueCard-card" style={{border: `2px solid ${props.color}`}}>
         <div className="QueueCard-card-img">
           <img src={props.video.video_img} alt=""/>
         </div>
@@ -23,7 +23,7 @@ function QueueCard(props) {
     )
   } else {
     card = (
-      <div className="QueueCard-card" id="queueVid">
+      <div className="QueueCard-card">
         <div className="QueueCard-card-img">
           <img src={props.video.video_img} alt=""/>
         </div>

@@ -6,7 +6,7 @@ function ChatCard(props) {
   if(props.currentUser === props.userObj.display_name) {
     card = (
       <div className="main">
-        <div id="mainCard" className="ChatCard_message">
+        <div id="mainCard" className="ChatCard_message" style={{background: `${props.color}`}}>
           <p>{props.userObj.message}</p>
         </div>
         <div className="ChatCard_user_img">
@@ -28,7 +28,11 @@ function ChatCard(props) {
         <div className="ChatCard_user_img">
           <img src={props.userObj.img} alt=""/>
         </div>
-        <div id="otherCard" className="ChatCard_message">
+        <div 
+          id="otherCard"
+          className="ChatCard_message"  
+          style={{background: `${props.userObj.color}`}}
+        >
           <p>{props.userObj.message}</p>
         </div>
       </div>
