@@ -56,6 +56,8 @@
 }
 
 .Home_img h1 {
+  max-width: 500px;
+  margin: 0 auto;
   width: 50%;
   font-size: 30px;
   line-height: 30px;
@@ -77,45 +79,55 @@
   position: absolute;
   left: -14%;
   top: 95px;
-  z-index: 1;
+  z-index: 2;
 }
 #cloud2 {
   width: 39%;
   position: absolute;
   left: -7%;
   top: 225px;
-  z-index: 0;
+  z-index: 1;
 }
 #cloud3 {
   width: 35%;
   position: absolute;
   left: 10%;
   top: 140px;
-  z-index: 2;
+  z-index: 3;
 }
 #cloud4 {
   width: 46%;
   position: absolute;
   right: -5%;
   top: 100px;
+  z-index: 1;
+  
 }
 #cloud5 {
   width: 35%;
   position: absolute;
   right: -5%;
   top: 240px;
+  z-index: 2;
+}
+
+.Home_img_rings {
+  max-width: 1100px;
+  width: 90%;
+  margin: 0 auto;
+  height: fit-content;
+  position: relative;
 }
 
 #ring1 {
   -webkit-animation:spin 60s linear infinite;
   -moz-animation:spin 60s linear infinite;
   animation:spin 60s linear infinite;
-  width: 90%;
+  width: 100%;
   position: absolute;
-  right: 5%;
-  left: 5%;
   top: 375px;
-
+  right: 0;
+  left: 0;
 }
 
 #ring2 {
@@ -124,11 +136,9 @@
   animation:spin 40s linear infinite reverse;
   width: 100%;
   position: absolute;
-  width: 90%;
-  position: absolute;
-  right: 5%;
-  left: 5%;
   top: 375px;
+  right: 0;
+  left: 0;
 }
 
 

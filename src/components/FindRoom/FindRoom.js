@@ -49,55 +49,59 @@ class FindRoom extends Component {
     })
     return (
       <div className="FindRoom">
-        <div className="FR-top-bar" style={{background: `${this.props.user.color}`}}>
-          <Link to='/'><button>
-            <img src={logo} alt=""/>
-          </button></Link>
-        </div>
-        <div className="FR-join-room">
-          <div className="FR-join-room-title">
-            <p>Join a room</p>
+        <div className="FR-top-bar-container" style={{background: `${this.props.user.color}`}}>
+          <div className="FR-top-bar">
+            <Link to='/'><button>
+              <img src={logo} alt=""/>
+            </button></Link>
           </div>
-          {roomArr}
         </div>
-        <div className="FR-create-room">
-          <p>Create a room</p>
-          <div className="FR-create-room-card">
-            <div className="FR-color-img">
-              <div className="FR-user-img">
-                <img src={this.props.user.img} alt=""/>
-              </div>
-              <div className="FR-color-pick dropdown" style={{background: `${this.props.user.color}`}}>
-                <div className="dropdown-color-picker">
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#7fffd4"})} style={{background: `#7fffd4`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#00FFFF"})} style={{background: `#00FFFF`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FF6EFF"})} style={{background: `#FF6EFF`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FFAE42"})} style={{background: `#FFAE42`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#8FD400"})} style={{background: `#8FD400`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FFFF26"})} style={{background: `#FFFF26`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FF0000"})} style={{background: `#FF0000`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#D900D9"})} style={{background: `#D900D9`}}></button>
-                  <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#2196F3"})} style={{background: `#2196F3`}}></button>
+        <div className="FR-rooms">
+          <div className="FR-join-room">
+            <div className="FR-join-room-title">
+              <p>Join a room</p>
+            </div>
+            {roomArr}
+          </div>
+          <div className="FR-create-room">
+            <p>Create a room</p>
+            <div className="FR-create-room-card">
+              <div className="FR-color-img">
+                <div className="FR-user-img">
+                  <img src={this.props.user.img} alt=""/>
+                </div>
+                <div className="FR-color-pick dropdown" style={{background: `${this.props.user.color}`}}>
+                  <div className="dropdown-color-picker">
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#7fffd4"})} style={{background: `#7fffd4`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#00FFFF"})} style={{background: `#00FFFF`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FF6EFF"})} style={{background: `#FF6EFF`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FFAE42"})} style={{background: `#FFAE42`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#8FD400"})} style={{background: `#8FD400`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FFFF26"})} style={{background: `#FFFF26`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FF0000"})} style={{background: `#FF0000`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#D900D9"})} style={{background: `#D900D9`}}></button>
+                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#2196F3"})} style={{background: `#2196F3`}}></button>
+                  </div>
                 </div>
               </div>
+              <label>Room name</label>
+              <input 
+                type="text"
+                onChange={e => this.updateName(e.target.value)}
+                value={this.state.roomNameInpt}
+              />
+              <label>Password</label>
+              <input 
+                type="password"
+                onChange={e => this.updatePassword(e.target.value)}
+                value={this.state.passwordInpt}
+              />
+              <Link to='/dashboard'><button
+                id="FR-button-create"
+                style={{background: `${this.props.user.color}`}}
+                onClick={() => this.prepForMakeRoom()}
+              >Make a room</button></Link>
             </div>
-            <label>Room name</label>
-            <input 
-              type="text"
-              onChange={e => this.updateName(e.target.value)}
-              value={this.state.roomNameInpt}
-            />
-            <label>Password</label>
-            <input 
-              type="password"
-              onChange={e => this.updatePassword(e.target.value)}
-              value={this.state.passwordInpt}
-            />
-            <Link to='/dashboard'><button
-              id="FR-button-create"
-              style={{background: `${this.props.user.color}`}}
-              onClick={() => this.prepForMakeRoom()}
-            >Make a room</button></Link>
           </div>
         </div>
       </div>

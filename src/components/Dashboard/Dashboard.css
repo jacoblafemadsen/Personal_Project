@@ -109,7 +109,6 @@
   top: 100px;
   right: calc(20% + 25px);
   left: calc(135px + 25px);
-  
 }
 #chat {
   width: 20%;
@@ -117,4 +116,10 @@
   position: absolute;
   top: 75px;
   right: 0;
+}
+
+@media screen and (max-width: 1250px){
+  #player {
+    right: 275px;
+  }
 }
