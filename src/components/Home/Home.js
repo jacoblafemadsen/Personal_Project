@@ -20,7 +20,7 @@ class Home extends Component {
                 <img src={logo} alt="" draggable="false" />
               </div>
               <div className="Home_btn">
-                <a href={process.env.REACT_APP_LOGIN}><button>Lets get started</button></a>
+                <a href={process.env.REACT_APP_LOGIN}><button>Let's get started</button></a>
               </div>
             </div>
           </div>
