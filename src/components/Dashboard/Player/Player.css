@@ -3,17 +3,55 @@
   flex-direction: column;
   align-items: center;
 }
+.Player-controls-container {
+  height: 40px;
+  width: 100%;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .Player-controls {
-  height: 30px;
-  width: fit-content;
+  height: 100%;
+  width: 390px;
+  display: flex;
 }
 .Player-controls button {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border: none;
+  background: none;
   padding: 0;
+  cursor: pointer;
+  margin-left: -1px;
 }
 .Player-controls img {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+}
+.Player-current-volume {
+  width: 40px;
+  height: 40px;
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  line-height: 18px;
+}
+.Player-YouTube-container {
+  background-color: #444444;
+  width: 100%;
+  padding-top: 56.25%;
+  position: relative;
+}
+.Player-YouTube {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

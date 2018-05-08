@@ -11,6 +11,9 @@ import forward10 from '../../../images/PlayerControls/forward_10_button.svg'
 import forward60 from '../../../images/PlayerControls/forward_60_button.svg'
 import volumeMinus from '../../../images/PlayerControls/minus-volume-button.svg'
 import volumePlus from '../../../images/PlayerControls/plus-volume-button.svg'
+import nextVideo from '../../../images/PlayerControls/next-video-button.svg'
+import mute_icon from '../../../images/PlayerControls/mute-volume-button.svg'
+import unmute_icon from '../../../images/PlayerControls/unmute-volume-button.svg'
 import io from 'socket.io-client'
 import './Player.css'
 
@@ -65,8 +68,6 @@ class Player extends Component {
 
   render() {
     const opts = {
-      height: '390',
-      width: '640',
       playerVars: {
         autoplay: 0,
         color: 'white',
@@ -77,85 +78,90 @@ class Player extends Component {
     };
     return (
       <div className="Player">
-        <YouTube
-          className='player'
-          videoId={this.props.videoQueue[0] ? this.props.videoQueue[0].video_id : ''}
-          opts={opts}         
-          onEnd={() => this.next()}
-          onReady={e => this.putEventOnState(e)}
-        />
-        <div className="Player-controls">
-          <button 
+        <div className='Player-YouTube-container'>
+          <YouTube
+            className='Player-YouTube'
+            videoId={this.props.videoQueue[0] ? this.props.videoQueue[0].video_id : ''}
+            opts={opts}         
+            onEnd={() => this.next()}
+            onReady={e => this.putEventOnState(e)}
+          />
+        </div>
+        <div className="Player-controls-container">
+          <div 
+            className="Player-controls"
             style={{background: `${this.props.user.color}`}}
-            onClick={() => this.emitPlayerStateChange('-60')}>
-            <img src={back60} alt=""/>
-          </button>
-          <button 
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => this.emitPlayerStateChange('-10')}>
-            <img src={back10} alt=""/>
-          </button>
-          <button 
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => {
-              if(this.state.btnStatus === 'pause') {
-                this.emitPlayerStateChange('pause')
-              } else if (this.state.btnStatus === 'play') {
-                this.emitPlayerStateChange('play')
-              }
-          }}>
-            <img src={this.state.btnStatus === 'play' ? play_icon : pause_icon} alt=""/>
-          </button>
-          <button 
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => this.emitPlayerStateChange('10')}>
-            <img src={forward10} alt=""/>
-          </button>
-          <button
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => this.emitPlayerStateChange('60')}>
-            <img src={forward60} alt=""/>
-          </button>
-          <button 
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => this.emitPlayerStateChange('next')}>next video</button>
-          <button 
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => {
-              var vol = this.state.stateEvent.getVolume() - 20
-              if(vol >= 0) {
-                this.state.stateEvent.setVolume(vol)
-                this.setState({curVolume: vol})
-              }
-            }}
           >
-            <img src={volumeMinus} alt=""/>
-          </button>
-          <p>{this.state.curVolume}</p>
-          <button 
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => {
-              var vol = this.state.stateEvent.getVolume() + 20
-              if(vol <= 100) {
-                this.state.stateEvent.setVolume(vol)
-                this.setState({curVolume: vol})
-              }
+            <button 
+              onClick={() => this.emitPlayerStateChange('-60')}>
+              <img src={back60} alt=""/>
+            </button>
+            <button 
+              onClick={() => this.emitPlayerStateChange('-10')}>
+              <img src={back10} alt=""/>
+            </button>
+            <button 
+              onClick={() => {
+                if(this.state.btnStatus === 'pause') {
+                  this.emitPlayerStateChange('pause')
+                } else if (this.state.btnStatus === 'play') {
+                  this.emitPlayerStateChange('play')
+                }
+            }}>
+              <img src={this.state.btnStatus === 'play' ? play_icon : pause_icon} alt=""/>
+            </button>
+            <button 
+              onClick={() => this.emitPlayerStateChange('10')}>
+              <img src={forward10} alt=""/>
+            </button>
+            <button
+              onClick={() => this.emitPlayerStateChange('60')}>
+              <img src={forward60} alt=""/>
+            </button>
+            <button 
+              onClick={() => this.emitPlayerStateChange('next')}
+            >
+              <img src={nextVideo} alt=""/>
+            </button>
+            <button 
+              onClick={() => {
+                if(this.state.mute) {
+                  this.state.stateEvent.unMute()
+                  this.setState({mute: false})
+                } else {
+                  this.state.stateEvent.mute()
+                  this.setState({mute: true})
+                }
             }}
-          >
-            <img src={volumePlus} alt=""/>
-          </button>
-          <button 
-            style={{background: `${this.props.user.color}`}}
-            onClick={() => {
-              if(this.state.mute) {
-                this.state.stateEvent.unMute()
-                this.setState({mute: false})
-              } else {
-                this.state.stateEvent.mute()
-                this.setState({mute: true})
-              }
-          }}
-          >{this.state.mute ? 'unmute' : 'mute'}</button>
+            >
+              {this.state.mute ? <img src={mute_icon} alt=""/> : <img src={unmute_icon} alt=""/>}
+            </button>
+            <button 
+              onClick={() => {
+                var vol = this.state.stateEvent.getVolume() - 10
+                if(vol >= 0) {
+                  this.state.stateEvent.setVolume(vol)
+                  this.setState({curVolume: vol})
+                }
+              }}
+            >
+              <img src={volumeMinus} alt=""/>
+            </button>
+            <div className="Player-current-volume">
+              <p style={{color: `${this.props.user.color}`}}>{this.state.curVolume}</p>
+            </div>
+            <button 
+              onClick={() => {
+                var vol = this.state.stateEvent.getVolume() + 10
+                if(vol <= 100) {
+                  this.state.stateEvent.setVolume(vol)
+                  this.setState({curVolume: vol})
+                }
+              }}
+            >
+              <img src={volumePlus} alt=""/>
+            </button>
+          </div>
         </div>
       </div>
     );
