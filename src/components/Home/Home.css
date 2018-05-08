@@ -1,52 +1,138 @@
 .Home {
-  
+  max-width: 100%;
+  overflow-x: hidden;
 }
-.Home_banner {
+.Home_first_fold {
   widows: 100%;
   height: 100vh;
   position: relative;
+  background: #444444;
 }
-.Home_img {
-  position: absolute;
-  width: 90%;
-  z-index: -1;
-  right: 5%;
-  left: 5%;
-}
-.Home_img > img {
-  -webkit-animation:spin 50s linear infinite;
-  -moz-animation:spin 50s linear infinite;
-  animation:spin 50s linear infinite;
+
+.Home_top_bar {
   width: 100%;
+  height: 75px;
+  padding: 0px 50px;
+  background: aqua;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.Home_top_bar_container {
+  max-width: 1000px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .Home_logo {
-  position: absolute;
-  width: 40%;
-  z-index: 1;
-  right: 30%;
-  left: 30%;
-  bottom: 10vh;
+ height: 100%;
 }
 .Home_logo > img {
+  height: 100%;
+}
+.Home_btn button {
+  height: 50px;
+  font-size: 20px;
+  line-height: 20px;
+  background: #444444;
+  font-family: 'Comfortaa', cursive;
+  padding: 0 15px;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+
+.Home_img {
+  position: relative;
+  text-align: center;
+}
+
+.Home_img h1 {
+  width: 50%;
+  font-size: 30px;
+  line-height: 30px;
+  color: white;
+  font-family: 'Comfortaa', cursive;
+  z-index: 5;
+  position: absolute;
+  right: 25%;
+  left: 25%;
+  top: 80px;
+  background: rgb(99, 99, 99, .9);
+  padding: 25px 50px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3)
+}
+
+#cloud1 {
+  width: 41%;
+  position: absolute;
+  left: -14%;
+  top: 20px;
+  z-index: 1;
+}
+#cloud2 {
+  width: 39%;
+  position: absolute;
+  left: -7%;
+  top: 150px;
+  z-index: 0;
+}
+#cloud3 {
+  width: 35%;
+  position: absolute;
+  left: 10%;
+  top: 65px;
+  z-index: 2;
+}
+#cloud4 {
+  width: 46%;
+  position: absolute;
+  right: -5%;
+  top: 25px;
+}
+#cloud5 {
+  width: 35%;
+  position: absolute;
+  right: -5%;
+  top: 165px;
+}
+
+#ring1 {
+  -webkit-animation:spin 60s linear infinite;
+  -moz-animation:spin 60s linear infinite;
+  animation:spin 60s linear infinite;
+  width: 90%;
+  position: absolute;
+  right: 5%;
+  left: 5%;
+  top: 300px;
+
+}
+
+#ring2 {
+  -webkit-animation:spin 40s linear infinite reverse;
+  -moz-animation:spin 40s linear infinite reverse;
+  animation:spin 40s linear infinite reverse;
   width: 100%;
+  position: absolute;
+  width: 90%;
+  position: absolute;
+  right: 5%;
+  left: 5%;
+  top: 300px;
 }
-.Home_btns {
-  text-align: end;
-  width: 60%;
-  height: 200px;
-}
-.Home_btns :nth-child(1) button {
-  margin-right: 40px;
-  padding: 20px 40px;
-}
-.Home_btns :nth-child(2) button {
-  padding: 20px 40px;
-  margin-right: 60px;
-}
+
+
 .Home_body {
-  widows: 100%;
+  width: 100%;
   height: 100vh;
-  background: black;
+  background: #444444;
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }

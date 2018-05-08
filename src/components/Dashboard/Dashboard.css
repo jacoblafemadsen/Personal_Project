@@ -113,6 +113,7 @@
 }
 #chat {
   width: 20%;
+  min-width: 250px;
   height: 100vh;
   position: absolute;
   top: 0;
