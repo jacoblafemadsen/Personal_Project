@@ -66,5 +66,12 @@ module.exports = {
     db.change_color([id, color])
       .then(user => res.status(200).send(user[0]))
       .catch(() => res.status(500).send())
+  },
+  getRoom: (req, res) => {
+    const db = req.app.get('db')
+    const id = req.params.id
+    db.get_room([id])
+      .then(roomName => res.status(200).send(roomName[0]))
+      .catch(() => res.status(500).send())
   }
 }

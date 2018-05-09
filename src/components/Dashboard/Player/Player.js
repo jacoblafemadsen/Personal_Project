@@ -3,6 +3,7 @@ import YouTube from 'react-youtube'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { nextInQueue } from '../../../ducks/video_reducer'
+import vidgearLogo from '../../../images/vidgear5.svg'
 import back60 from '../../../images/PlayerControls/back_60_button.svg'
 import back10 from '../../../images/PlayerControls/back_10_button.svg'
 import play_icon from '../../../images/PlayerControls/play_button.svg'
@@ -26,7 +27,8 @@ class Player extends Component {
       stateEvent: {},
       btnStatus: 'play',
       curVolume: 100,
-      mute: false
+      mute: false,
+      firstPlay: true
     }
     this.putEventOnState = this.putEventOnState.bind(this)
   }
@@ -51,14 +53,14 @@ class Player extends Component {
 
   play() {
     this.state.stateEvent.playVideo()
-    this.setState({btnStatus: 'pause'})
+    this.setState({btnStatus: 'pause', firstPlay: false})
   }
   pause() {
     this.state.stateEvent.pauseVideo()
     this.setState({btnStatus: 'play'})
   }
   next() {
-    this.setState({btnStatus: 'play'})
+    this.setState({btnStatus: 'play', firstPlay: true})
     axios.delete(`/api/queue/${this.props.videoQueue[0].id}`)
     this.props.nextInQueue()
   }
@@ -86,6 +88,29 @@ class Player extends Component {
             onEnd={() => this.next()}
             onReady={e => this.putEventOnState(e)}
           />
+          <div 
+            className='Player-YouTube-overlay'
+            onClick={() => {
+              if(this.state.btnStatus === 'pause') {
+                this.emitPlayerStateChange('pause')
+              } else if (this.state.btnStatus === 'play') {
+                this.emitPlayerStateChange('play')
+              }
+            }}
+          >
+            <div 
+              className='Player-YouTube-overlay-icon-container'
+            >
+              <div className='Player-YouTube-overlay-icon'>
+                <div 
+                  className={this.state.btnStatus === 'play' && this.state.firstPlay === true ? 'Player-YouTube-overlay-icon-background' : 'dont-display-background'}
+                  style={{background: `${this.props.user.color}`}}
+                >
+                </div>
+                <img className={this.state.btnStatus === 'play' && this.state.firstPlay === true ? 'Player-YouTube-overlay-icon-img' : 'dont-display-img'} src={vidgearLogo} alt=""/>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="Player-controls-container">
           <div 

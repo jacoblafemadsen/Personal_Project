@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { joinRoom } from '../../ducks/video_reducer'
@@ -10,6 +11,19 @@ import logo from '../../images/vidgear4.svg'
 
 
 class Dashboard extends Component {
+  constructor() {
+    super()
+    this.state = {
+      roomName: ''
+    }
+  }
+  componentDidMount() {
+    this.setState({roomName: ''})
+    axios.get(`/api/room/${this.props.user.rooms_id}`).then(res => {
+      console.log(res.data.name)
+      this.setState({roomName: res.data.name})
+    })
+  }
   render() {
     return (
       <div className="Dashboard">
@@ -18,6 +32,9 @@ class Dashboard extends Component {
             <a href='/logout'><button  onClick={() => this.props.joinRoom({user_id: this.props.user.id, rooms_id: null})}>
               <img src={logo} alt=""/>
             </button></a>
+          </div>
+          <div className="Dash-top-room-name">
+            <h1>{this.state.roomName}</h1>
           </div>
           <div className="Dash-user-info-container dropdown">
             <div className="Dash-user-info-banner">

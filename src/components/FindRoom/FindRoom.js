@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getUser, joinRoom, changeColor } from '../../ducks/video_reducer'
+import { Redirect } from 'react-router-dom'
 import './FindRoom.css'
 import RoomCard from './RoomCard/RoomCard';
 import logo from '../../images/vidgear4.svg'
@@ -13,7 +14,8 @@ class FindRoom extends Component {
     this.state ={
       roomNameInpt: '',
       passwordInpt: '',
-      rooms: []
+      rooms: [],
+      redirect: false
     }
   }
   componentDidMount() {
@@ -29,16 +31,24 @@ class FindRoom extends Component {
     this.setState({passwordInpt})
   }
   prepForMakeRoom() {
-    let roomObj = {
-      name: this.state.roomNameInpt,
-      password: this.state.passwordInpt,
-      made_by: this.props.user.display_name
+    if(this.state.passwordInpt && this.state.roomNameInpt) {
+      let roomObj = {
+        name: this.state.roomNameInpt,
+        password: this.state.passwordInpt,
+        made_by: this.props.user.display_name
+      }
+      axios.post('/api/rooms', roomObj).then(res => {
+        this.props.joinRoom({user_id: this.props.user.id, rooms_id: res.data.id})
+      }).catch(e => console.log(e))
+      this.setState({input: '', redirect: true})
+    } else {
+      this.setState({roomNameInpt: '', passwordInpt: ''})
     }
-    axios.post('/api/rooms', roomObj).then(res => {
-      this.props.joinRoom({user_id: this.props.user.id, rooms_id: res.data.id})
-    }).catch(e => console.log(e))
   }
   render() {
+    if(this.state.redirect) {
+      return <Redirect push to="/dashboard"/>
+    }
     var roomArr = this.state.rooms.map(e => {
       return (
         <RoomCard 
@@ -96,11 +106,11 @@ class FindRoom extends Component {
                 onChange={e => this.updatePassword(e.target.value)}
                 value={this.state.passwordInpt}
               />
-              <Link to='/dashboard'><button
+              <button
                 id="FR-button-create"
                 style={{background: `${this.props.user.color}`}}
                 onClick={() => this.prepForMakeRoom()}
-              >Make a room</button></Link>
+              >Make a room</button>
             </div>
           </div>
         </div>

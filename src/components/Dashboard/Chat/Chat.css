@@ -12,6 +12,15 @@
   overflow-y: auto;
   border-radius: 10px;
 }
+.Chat-chatGuy {
+  width: fit-content;
+  height: 225px;
+  margin: 0 auto;
+  margin-top: calc(40vh - 112.5px)
+}
+.Chat-chatGuy img {
+  height: 100%;
+}
 .Chat_input {
   width: calc(100% - 90px);
   height: calc(10% - 20px);

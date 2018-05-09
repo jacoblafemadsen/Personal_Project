@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 import { connect } from 'react-redux'
 import letter from '../../../images/letter-white.svg'
+import chatGuy from '../../../images/chat.svg'
 import ChatCard from './ChatCard/ChatCard'
 import './Chat.css'
 
@@ -53,7 +54,7 @@ class Chat extends Component {
     return (
       <div className="Chat">
         <div className="Chat_messages_container">
-        {messages}
+          {messages[0] ? messages : <div className="Chat-chatGuy" style={{background: `${this.props.user.color}`}}><img src={chatGuy} alt=""/></div>}
         </div>
         <textarea
           spellCheck="true"

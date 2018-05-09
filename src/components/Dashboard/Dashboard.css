@@ -25,8 +25,13 @@
 .Dash-top-logo img {
   height: 100%;
 }
-
-
+.Dash-top-room-name {
+  font-family: 'Comfortaa', cursive;
+  font-size: 30px;
+  line-height: 30px;
+  letter-spacing: 1px;
+  color: #444444;
+}
 .Dash-user-info-container{
   width: fit-content;
   height: 40px;
