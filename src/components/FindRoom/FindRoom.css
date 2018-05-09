@@ -182,3 +182,184 @@
   cursor: pointer;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 375px){
+  .FR-top-bar-container {
+    padding: 0 10px;
+    height: 50px;
+  }
+  .FR-rooms {
+    max-width: 375px;
+    width: 100%;
+    height: fit-content;
+    background: #444444;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  } 
+  
+  .FR-top-bar button {
+    height: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 2px;
+  }
+  
+  .FR-top-bar img {
+    height: 100%;
+  }
+  
+  
+  .FR-join-room {
+    width: 100%;
+    height: fit-content;
+    float:right;
+    padding: 25px;
+  }
+  
+  .FR-join-room-title {
+    font-family: 'Comfortaa', cursive;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    padding-bottom: 10px;
+    color: white;
+    border-bottom: 2px solid white;
+    margin-bottom: 25px;
+  }
+  
+  .FR-create-room {
+    max-width: 375px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    padding: 25px 0;
+  } 
+  
+  .FR-create-room > p {
+    font-family: 'Comfortaa', cursive;
+    font-size: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    margin-bottom: 25px;
+  }
+  
+  .FR-create-room-card {
+    width: fit-content;
+    height: fit-content;
+    padding: 25px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .FR-color-img {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .FR-user-img {
+    width: 25vh;
+    height: 25vh;
+    margin-bottom: 10px;
+  }
+  .FR-user-img img {
+    border-radius: 12.33vh;
+    width: 100%;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  .FR-color-pick {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 5vh;
+    position: relative;
+    display: inline-block;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    margin-left: 1vh;
+  }
+  
+  .dropdown-color-picker {
+    width: 25vh;
+    height: 25vh;
+    left: -26vh;
+    top: 0;
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 1.25vh;
+    z-index: 1;
+  }
+  
+  .dropdown-color-picker > button {
+    opacity: 0.6;
+    width: 5vh;
+    height: 5vh;
+    border: 0;
+    border-radius: 2.5vh;
+    margin: 1.25vh;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  .dropdown-color-picker > button:hover {
+    opacity: 1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.3);
+  }
+  
+  .FR-color-pick:hover .dropdown-color-picker {
+    display: block;
+  }
+  
+  .FR-create-room-card label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    line-height: 15px; 
+    color: white;
+    margin-bottom: 5px;
+  }
+  
+  .FR-create-room-card input {
+    width: calc(100% - 25px);
+    height: 20px;
+    border: none;
+    margin-bottom: 10px;
+    padding: 0 5px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    line-height: 15px; 
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+  
+  #FR-button-create {
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    line-height: 15px;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+}

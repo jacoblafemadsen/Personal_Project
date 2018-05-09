@@ -90,3 +90,9 @@
 .QueueCard-user-img-hide img {
   display: none;
 }
+
+@media screen and (max-width: 1000px){
+  .QueueCard-card-hide {
+    display: none;
+  }
+}

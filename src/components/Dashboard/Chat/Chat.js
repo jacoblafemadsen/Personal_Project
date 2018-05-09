@@ -52,13 +52,17 @@ class Chat extends Component {
       )
     })
     return (
-      <div className="Chat">
+      <div 
+        className="Chat" 
+        style={{borderLeft: `10px solid ${this.props.user.color}`}}
+      >
         <div className="Chat_messages_container">
           {messages[0] ? messages : <div className="Chat-chatGuy" style={{background: `${this.props.user.color}`}}><img src={chatGuy} alt=""/></div>}
         </div>
         <textarea
           spellCheck="true"
           className="Chat_input"
+          type="text"
           value={this.state.newMessage}
           onChange={e => this.updateInput(e.target.value)}
         />

@@ -3,19 +3,19 @@
 }
 
 .ChatCard_user_img {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   margin: 0 10px;
 }
 
 .ChatCard_user_img img {
   width: 100%;
-  border-radius: 15px;
+  border-radius: 12.5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 
 .ChatCard_message {
-  max-width: 65%;
+  max-width: calc(100% - 100px);
   width: fit-content;
   height: fit-content;
   border-radius: 10px;

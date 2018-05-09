@@ -73,9 +73,12 @@ class Queue extends Component {
     return (
       <div className={this.state.hide ? "Queue-hide" : "Queue"}>
         <div className={this.state.hide ? "Queue-title-button-hide" : "Queue-title-button"}>
-          <p>Video Queue</p>
+          <div className="Queue-text">
+            <p>Video Queue</p>
+            <a href="https://www.youtube.com/" target="_blank" style={{color: `${this.props.user.color}`}}>Grab a video here</a>
+          </div>
           <button
-            style={this.state.hide ? {background: `${this.props.user.color}`} : {background: `rgb(99, 99, 99)`}}
+            style={{background: `${this.props.user.color}`}}
             onClick={() => this.setState({hide: !(this.state.hide)})}
           >
             <img src={hamburger} alt=""/>

@@ -2,28 +2,44 @@
   width: 400px;
   height: calc(100vh - 75px);
   background: rgb(99, 99, 99);
-  padding: 25px 10px;
+  padding: 10px 10px;
   position: relative;
+  z-index: 100;
 }
-.Queue p {
+.Queue-text {
+  display: flex;
+  align-items:flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+.Queue-text p {
   font-family: 'Comfortaa', cursive;
   color: white;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: 30px;
+  line-height: 30px;
+  margin-bottom: 5px;
+}
+.Queue-text a {
+  font-family: 'Comfortaa', cursive;
+  font-size: 15px;
+  line-height: 15px;
   margin-bottom: 10px;
+  text-decoration: none;
+  padding: 0 15px;
 }
 .Queue-title-button button {
   position: absolute;
-  right: -55px;
-  top: 25px;
+  right: -40px;
+  top: 10px;
+  z-index: 100;
 }
 .Queue-title-button button {
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
   border: none;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   padding: 10px;
   cursor: pointer;
 }
@@ -42,7 +58,7 @@
 
 .Queue_input {
   width: calc(100% - 100px);
-  height: 25px;
+  height: 23px;
   border: none;
   padding: 0 5px;
   font-family: 'Roboto', sans-serif;
@@ -51,38 +67,41 @@
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .Queue_add {
+  width: 40px;
+  height: 40px;
   display: flex;
   align-content: center;
   justify-content: center;
-  border-radius: 20px;
-  padding: 5px;
-  margin-left: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 0;
   border: none;
   cursor: pointer;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .Queue_add > img {
-  width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
 }
 
-
-
 .Queue-hide {
-  width: 75px;
+  width: 50px;
   height: calc(100vh - 75px);
   background: rgb(99, 99, 99);
-  padding: 25px 10px;
+  padding: 10px 5px;
 }
 .Queue-hide p {
   display: none;
 }
+.Queue-hide a {
+  display: none;
+}
 .Queue-title-button-hide button {
-  width: 55px;
-  height: 55px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
+  margin-bottom: 10px;
   border: none;
-  margin-bottom: 25px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 10px;
   cursor: pointer;
@@ -103,3 +122,4 @@
 .Queue_add-hide > img {
   display: none;
 }
+

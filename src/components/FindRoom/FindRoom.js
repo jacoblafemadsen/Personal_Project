@@ -102,12 +102,13 @@ class FindRoom extends Component {
               />
               <label>Password</label>
               <input 
-                type="password"
+                type="text"
                 onChange={e => this.updatePassword(e.target.value)}
                 value={this.state.passwordInpt}
               />
               <button
                 id="FR-button-create"
+                type="text"
                 style={{background: `${this.props.user.color}`}}
                 onClick={() => this.prepForMakeRoom()}
               >Make a room</button>
