@@ -119,11 +119,19 @@ class Player extends Component {
             style={{background: `${this.props.user.color}`}}
           >
             <button 
-              onClick={() => this.emitPlayerStateChange('-60', this.state.stateEvent.getCurrentTime())}>
+              onClick={() => {
+                this.pause()
+                this.emitPlayerStateChange('pause')
+                this.emitPlayerStateChange('-60', this.state.stateEvent.getCurrentTime())
+              }}>
               <img src={back60} alt=""/>
             </button>
             <button 
-              onClick={() => this.emitPlayerStateChange('-10', this.state.stateEvent.getCurrentTime())}>
+              onClick={() => {
+                this.pause()
+                this.emitPlayerStateChange('pause')
+                this.emitPlayerStateChange('-10', this.state.stateEvent.getCurrentTime())
+              }}>
               <img src={back10} alt=""/>
             </button>
             <button 
@@ -137,11 +145,19 @@ class Player extends Component {
               <img src={this.state.btnStatus === 'play' ? play_icon : pause_icon} alt=""/>
             </button>
             <button 
-              onClick={() => this.emitPlayerStateChange('10', this.state.stateEvent.getCurrentTime())}>
+              onClick={() => {
+                this.pause()
+                this.emitPlayerStateChange('pause')
+                this.emitPlayerStateChange('10', this.state.stateEvent.getCurrentTime())
+              }}>
               <img src={forward10} alt=""/>
             </button>
             <button
-              onClick={() => this.emitPlayerStateChange('60', this.state.stateEvent.getCurrentTime())}>
+              onClick={() => {
+                this.pause()
+                this.emitPlayerStateChange('pause')
+                this.emitPlayerStateChange('60', this.state.stateEvent.getCurrentTime())
+              }}>
               <img src={forward60} alt=""/>
             </button>
             <button 
