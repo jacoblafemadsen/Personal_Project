@@ -1,5 +1,5 @@
 require('dotenv').config()
-const app = require('express')(),
+const express = require('express'),
       bodyParser = require('body-parser'),
       socket = require('socket.io'),
       session = require('express-session'),
@@ -8,6 +8,8 @@ const app = require('express')(),
       massive = require('massive')
       ctrl = require('./controller')
 
+
+const app = express()
 app.use(bodyParser.json())
 
 const {
@@ -17,14 +19,16 @@ const {
   CLIENT_ID,
   CLIENT_SECRET,
   CALLBACK_URL,
-  CONNECTION_STRING
+  CONNECTION_STRING,
+  SUCCESS_REDIRECT,
+  FAILURE_REDIRECT
 } = process.env
 
 massive(CONNECTION_STRING).then(db => {
   app.set('db', db)
 })
 
-app.use(express.static(__dirname + './../build'))
+app.use(express.static(`${__dirname}/../build`))
 
 app.use(session({
   secret: SESSION_SECRET,
@@ -66,8 +70,8 @@ passport.deserializeUser((id, done) => {
 
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-  successRedirect: 'http://localhost:3000/#/findroom',
-  failureRedirect: 'http://localhost:3000/#/'
+  SUCCESS_REDIRECT,
+  FAILURE_REDIRECT
 }))
 
 app.get(`/auth/me`, ctrl.authMe)

@@ -1,3 +1,6 @@
+require('dotenv').config()
+const { REACT_APP_LOGOUT } = process.env
+
 module.exports = {
   authMe: (req, res) => {
     if(req.user.id) {
@@ -8,7 +11,7 @@ module.exports = {
   },
   logout: (req, res) => {
     req.logOut()
-    res.redirect('http://localhost:3000/#/')
+    res.redirect(REACT_APP_LOGOUT)
   },
   createRoom: (req, res) => {
     const db = req.app.get('db')

@@ -1,0 +1,14 @@
+REACT_APP_LOGIN=/auth
+REACT_APP_LOGOUT=/#/
+
+SUCCESS_REDIRECT=/#/findroom
+FAILURE_REDIRECT=/#/
+
+SERVER_PORT=4500
+SESSION_SECRET=h934ufb9uds8fuyh3jnbds8uqj3fhb90sdijnb4f9pisjklabh39iojfh9ijo
+DOMAIN=jacobmadsen.auth0.com
+CLIENT_ID=5NAOldbGDpffjoV1UKFpJCklDCGOQtVN
+CLIENT_SECRET=D-f4dLIRkNN1xVpdKDUXcW4sXB_pkqvdrywoVXv4yJ5-RDGUoyj6jLe-pthXaXWT
+CALLBACK_URL=/auth/callback
+CONNECTION_STRING=postgres://saofgwsehmfshm:6efd577445c90946ef815a198daf249ab66210b2461bd7f65e07b288307de9c0@ec2-23-23-247-222.compute-1.amazonaws.com:5432/d95ghqlnep9bmc?ssl=true
+REACT_APP_YOUTUBE=AIzaSyAlmU8m1J-asY5H44R24YPlSC8kSN5huIM
