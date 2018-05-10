@@ -102,7 +102,8 @@ io.on('connection', socket => {
   });
 
   socket.on(`video message`, input => {
-    io.emit(`video-${input.rooms_id}`, input.name)
+    console.log(input)
+    io.emit(`video-${input.rooms_id}`, input)
   });
 
   socket.on(`queue message`, input => {

@@ -34,18 +34,19 @@ class Player extends Component {
   }
   componentDidMount() {
     socket.on(`video-${this.props.user.rooms_id}`, res => {
-      res === 'play' ? this.play() : ''
-      res === 'pause' ? this.pause() : ''
-      res === '-60' ? this.seekToLocation(-60) : ''
-      res === '-10' ? this.seekToLocation(-10) : ''
-      res === '10' ? this.seekToLocation(10) : ''
-      res === '60' ? this.seekToLocation(60) : ''
-      res === 'next' ? this.next() : ''
+      console.log(res.key)
+      res.key === 'play' ? this.play() : ''
+      res.key === 'pause' ? this.pause() : ''
+      res.key === '-60' ? this.seekToLocation(-60 + res.payload) : ''
+      res.key === '-10' ? this.seekToLocation(-10 + res.payload) : ''
+      res.key === '10' ? this.seekToLocation(10 + res.payload) : ''
+      res.key === '60' ? this.seekToLocation(60 + res.payload) : ''
+      res.key === 'next' ? this.next() : ''
     })
   }
 
-  emitPlayerStateChange(name) {
-    socket.emit('video message', {rooms_id: this.props.user.rooms_id, name: name})
+  emitPlayerStateChange(key, payload = -1) {
+    socket.emit('video message', {rooms_id: this.props.user.rooms_id, key: key, payload: payload})
   }
   putEventOnState(event) {
     this.setState({stateEvent: event.target})
@@ -65,7 +66,7 @@ class Player extends Component {
     this.props.nextInQueue()
   }
   seekToLocation(num) {
-    this.state.stateEvent.seekTo(this.state.stateEvent.getCurrentTime() + num)
+    this.state.stateEvent.seekTo(num)
   }
 
   render() {
@@ -118,11 +119,11 @@ class Player extends Component {
             style={{background: `${this.props.user.color}`}}
           >
             <button 
-              onClick={() => this.emitPlayerStateChange('-60')}>
+              onClick={() => this.emitPlayerStateChange('-60', this.state.stateEvent.getCurrentTime())}>
               <img src={back60} alt=""/>
             </button>
             <button 
-              onClick={() => this.emitPlayerStateChange('-10')}>
+              onClick={() => this.emitPlayerStateChange('-10', this.state.stateEvent.getCurrentTime())}>
               <img src={back10} alt=""/>
             </button>
             <button 
@@ -136,11 +137,11 @@ class Player extends Component {
               <img src={this.state.btnStatus === 'play' ? play_icon : pause_icon} alt=""/>
             </button>
             <button 
-              onClick={() => this.emitPlayerStateChange('10')}>
+              onClick={() => this.emitPlayerStateChange('10', this.state.stateEvent.getCurrentTime())}>
               <img src={forward10} alt=""/>
             </button>
             <button
-              onClick={() => this.emitPlayerStateChange('60')}>
+              onClick={() => this.emitPlayerStateChange('60', this.state.stateEvent.getCurrentTime())}>
               <img src={forward60} alt=""/>
             </button>
             <button 
