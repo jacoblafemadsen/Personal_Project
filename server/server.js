@@ -70,8 +70,8 @@ passport.deserializeUser((id, done) => {
 
 app.get('/auth', passport.authenticate('auth0'))
 app.get('/auth/callback', passport.authenticate('auth0', {
-  SUCCESS_REDIRECT,
-  FAILURE_REDIRECT
+  successRedirect:  SUCCESS_REDIRECT,
+  failureRedirect: FAILURE_REDIRECT
 }))
 
 app.get(`/auth/me`, ctrl.authMe)
