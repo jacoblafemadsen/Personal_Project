@@ -8,6 +8,7 @@ import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
 import './Dashboard.css'
 import logo from '../../images/vidgear4.svg'
+import DashGuy from '../../images/Dashboard-computer-guy.svg'
 
 
 class Dashboard extends Component {

@@ -2,6 +2,7 @@
   width: 100%;
   height: calc(100vh - 125px);
   position: relative;
+  background: #444444;
   margin: 25px 0;
 }
 .Chat_messages_container {
