@@ -5,6 +5,7 @@
   padding: 10px 10px;
   position: relative;
   z-index: 100;
+  transition: width .25s ease-out;
 }
 .Queue-text {
   display: flex;
@@ -89,6 +90,7 @@
   height: calc(100vh - 75px);
   background: rgb(99, 99, 99);
   padding: 10px 5px;
+  transition: width .5s ease-out;
 }
 .Queue-hide p {
   display: none;

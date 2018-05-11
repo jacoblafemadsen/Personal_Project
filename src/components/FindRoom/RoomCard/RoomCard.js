@@ -1,8 +1,9 @@
 import React from 'react'
-import './RoomCard.css'
 import { connect } from 'react-redux'
 import { joinRoom } from '../../../ducks/video_reducer'
 import { Redirect } from 'react-router-dom'
+import './RoomCard.css'
+import hideIcon from '../../../images/hide-button.svg'
 
 class RoomCard extends React.Component {
   constructor() {
@@ -32,10 +33,11 @@ class RoomCard extends React.Component {
       <div className="RoomCard" onClick={() => this.setState({display: true})}>
         <button 
           style={{background: `${this.props.user.color}`}}
-          id="RoomCard-btn1"
-          className={this.state.display ? "RoomCard-on" : "RoomCard-off"}
+          className={this.state.display ? "RoomCard-btn1" : "RoomCard-off"}
           onClick={() => setTimeout(() => this.setState({display: false}), 50)}
-        >hide</button>
+        >
+          <img src={hideIcon} alt=""/>
+        </button>
         <p id="RoomCard-p1">{`${this.props.roomObj.name}`}</p>
         <p id="RoomCard-p2">{`Created By: ${this.props.roomObj.made_by}`}</p>
         <div id="RoomCard-btnInput" className={this.state.display ? "RoomCard-on" : "RoomCard-off"}>
@@ -47,9 +49,9 @@ class RoomCard extends React.Component {
           />
           <button
             style={{background: `${this.props.user.color}`}}
-            className={this.state.display ? "RoomCard-on" : "RoomCard-off"}
+            className={this.state.display ? "RoomCard-btn2" : "RoomCard-off"}
             onClick={() => this.join()}
-          >Join</button>
+          >Go</button>
         </div>
       </div>
     )

@@ -16,7 +16,7 @@
 
 .Dash-top-logo button {
   height: 75px;
-  width: 200px;
+  width: fit-content;
   background: none;
   border: none;
   margin-top: 2px;

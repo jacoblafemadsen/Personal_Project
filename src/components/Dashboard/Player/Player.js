@@ -3,6 +3,8 @@ import YouTube from 'react-youtube'
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { nextInQueue } from '../../../ducks/video_reducer'
+import io from 'socket.io-client'
+import './Player.css'
 import vidgearLogo from '../../../images/synchronizedvid_logo1.svg'
 import back60 from '../../../images/PlayerControls/back_60_button.svg'
 import back10 from '../../../images/PlayerControls/back_10_button.svg'
@@ -15,8 +17,6 @@ import volumePlus from '../../../images/PlayerControls/plus-volume-button.svg'
 import nextVideo from '../../../images/PlayerControls/next-video-button.svg'
 import mute_icon from '../../../images/PlayerControls/mute-volume-button.svg'
 import unmute_icon from '../../../images/PlayerControls/unmute-volume-button.svg'
-import io from 'socket.io-client'
-import './Player.css'
 
 const socket = io()
 
