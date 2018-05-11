@@ -6,7 +6,8 @@ import { getUser, joinRoom, changeColor } from '../../ducks/video_reducer'
 import { Redirect } from 'react-router-dom'
 import './FindRoom.css'
 import RoomCard from './RoomCard/RoomCard';
-import logo from '../../images/vidgear4.svg'
+import logoOuter from '../../images/synchronizedvid_logo_outer_ring.svg'
+import logoInner from '../../images/synchronizedvid_logo_inner.svg'
 
 class FindRoom extends Component {
   constructor() {
@@ -63,7 +64,8 @@ class FindRoom extends Component {
         <div className="FR-top-bar-container" style={{background: `${this.props.user.color}`}}>
           <div className="FR-top-bar">
             <Link to='/'><button>
-              <img src={logo} alt=""/>
+              <img src={logoOuter} id="FR-logo" alt="" draggable="false" />
+              <img src={logoInner} alt="" draggable="false" />
             </button></Link>
           </div>
         </div>

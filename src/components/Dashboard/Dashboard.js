@@ -7,7 +7,7 @@ import Player from './Player/Player'
 import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
 import './Dashboard.css'
-import logo from '../../images/vidgear4.svg'
+import logo from '../../images/synchronizedvid_logo1.svg'
 
 
 class Dashboard extends Component {
