@@ -35,12 +35,12 @@ class Player extends Component {
   componentDidMount() {
     socket.on(`video-${this.props.user.rooms_id}`, res => {
       console.log(res.key)
-      res.key === 'play' ? this.play() : ''
-      res.key === 'pause' ? this.pause() : ''
-      res.key === '-60' ? this.seekToLocation(-60 + res.payload) : ''
-      res.key === '-10' ? this.seekToLocation(-10 + res.payload) : ''
-      res.key === '10' ? this.seekToLocation(10 + res.payload) : ''
-      res.key === '60' ? this.seekToLocation(60 + res.payload) : ''
+      if(res.key === 'play') this.play()
+      if(res.key === 'pause') this.pause()
+      if(res.key === '-60') this.seekToLocation(-60 + res.payload)
+      if(res.key === '-10') this.seekToLocation(-10 + res.payload)
+      if(res.key === '10') this.seekToLocation(10 + res.payload)
+      if(res.key === '60') this.seekToLocation(60 + res.payload)
       res.key === 'next' ? this.next() : ''
     })
   }

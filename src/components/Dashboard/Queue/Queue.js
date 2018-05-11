@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getRoomQueue, addToQueue, deleteVideo } from '../../../ducks/video_reducer'
+import { getRoomQueue, addToQueue, deleteVideo, getUser } from '../../../ducks/video_reducer'
 import axios from 'axios'
 import QueueCard from './QueueCard/QueueCard'
 import io from 'socket.io-client'
@@ -19,6 +19,7 @@ class Queue extends Component {
     }
   }
   componentDidMount() {
+    this.props.getUser()
     socket.on(`queue-${this.props.user.rooms_id}`, queue_id => {
       axios.get(`/api/queueitem/${queue_id}`).then(res => {
         this.props.addToQueue(res.data)
@@ -62,6 +63,7 @@ class Queue extends Component {
      var queueArr = this.props.videoQueue.map((e, i) => {
         return (
           <QueueCard 
+            key={e.video_id + i}
             video={e}
             index={i}
             rooms_id={this.props.user.rooms_id}
@@ -112,4 +114,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {getRoomQueue, addToQueue, deleteVideo})(Queue)
+export default connect(mapStateToProps, {getRoomQueue, addToQueue, deleteVideo, getUser})(Queue)

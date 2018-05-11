@@ -192,13 +192,13 @@
 
 
 
-@media screen and (max-width: 375px){
+@media screen and (max-width: 500px){
   .FR-top-bar-container {
     padding: 0 10px;
     height: 50px;
   }
   .FR-rooms {
-    max-width: 375px;
+    max-width: 500px;
     width: 100%;
     height: fit-content;
     background: #444444;

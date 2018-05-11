@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { joinRoom } from '../../ducks/video_reducer'
+import { joinRoom, getUser } from '../../ducks/video_reducer'
 import Player from './Player/Player'
 import Chat from './Chat/Chat'
 import Queue from './Queue/Queue'
 import './Dashboard.css'
 import logo from '../../images/vidgear4.svg'
-import DashGuy from '../../images/Dashboard-computer-guy.svg'
 
 
 class Dashboard extends Component {
@@ -19,6 +18,7 @@ class Dashboard extends Component {
     }
   }
   componentDidMount() {
+    this.props.getUser()
     this.setState({roomName: ''})
     axios.get(`/api/room/${this.props.user.rooms_id}`).then(res => {
       console.log(res.data.name)
@@ -73,4 +73,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {joinRoom})(Dashboard);
+export default connect(mapStateToProps, {joinRoom, getUser})(Dashboard);

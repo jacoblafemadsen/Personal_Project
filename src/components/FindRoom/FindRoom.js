@@ -52,6 +52,7 @@ class FindRoom extends Component {
     var roomArr = this.state.rooms.map(e => {
       return (
         <RoomCard 
+          key={e.id}
           roomObj={e}
           userId={this.props.user.id}
         />

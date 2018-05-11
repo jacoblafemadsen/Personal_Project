@@ -3,7 +3,6 @@ import './RoomCard.css'
 import { connect } from 'react-redux'
 import { joinRoom } from '../../../ducks/video_reducer'
 import { Redirect } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 
 class RoomCard extends React.Component {
   constructor() {

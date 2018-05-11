@@ -107,15 +107,15 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {videoQueue: action.payload})
 
     case ADD_TO_QUEUE:
-      var arrObj = [...state.videoQueue]
-      arrObj.push(action.payload)
-      return Object.assign({}, state, {videoQueue: arrObj})
+      let arrObj1 = [...state.videoQueue]
+      arrObj1.push(action.payload)
+      return Object.assign({}, state, {videoQueue: arrObj1})
 
     case DELETE_VIDEO:
-      var arrObj = [...state.videoQueue]
-      arrObj.splice(action.payload, 1)
-      console.log(arrObj)
-      return Object.assign({}, state, {videoQueue: arrObj})
+      let arrObj2 = [...state.videoQueue]
+      arrObj2.splice(action.payload, 1)
+      console.log(arrObj2)
+      return Object.assign({}, state, {videoQueue: arrObj2})
 
     case CHANGE_COLOR + '_FULFILLED':
       return Object.assign({}, state, {user: action.payload})

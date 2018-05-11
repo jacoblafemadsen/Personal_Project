@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import logo from '../../images/vidgear4.svg'
+import logoOuter from '../../images/synchronizedvid_logo_outer_ring.svg'
+import logoMiddle from '../../images/synchronizedvid_logo_middle_ring.svg'
+import logoInner from '../../images/synchronizedvid_logo_inner_ring.svg'
 import rings1 from '../../images/rings-one.svg'
 import rings2 from '../../images/rings-two.svg'
 import cloud1 from '../../images/cloud-1.svg'
@@ -17,7 +19,9 @@ class Home extends Component {
           <div className="Home_top_bar">
             <div className="Home_top_bar_container">
               <div className="Home_logo">
-                <img src={logo} alt="" draggable="false" />
+                <img src={logoOuter} alt="" draggable="false" />
+                <img src={logoMiddle} alt="" draggable="false" />
+                <img src={logoInner} alt="" draggable="false" />
               </div>
               <div className="Home_btn">
                 <a href={process.env.REACT_APP_LOGIN}><button>Let's get started</button></a>

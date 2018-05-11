@@ -31,9 +31,23 @@
 }
 .Home_logo {
  height: 100%;
+ position: relative;
 }
 .Home_logo > img {
   height: 100%;
+  position: absolute;
+  padding: 4px 0;
+  margin-top: 1px;
+}
+.Home_logo :nth-child(2){
+  -webkit-animation:spin 15s linear infinite;
+  -moz-animation:spin 15s linear infinite;
+  animation:spin 15s linear infinite;
+}
+.Home_logo :nth-child(3){
+  -webkit-animation:spin 15s linear infinite reverse;
+  -moz-animation:spin 15s linear infinite reverse;
+  animation:spin 15s linear infinite reverse;
 }
 .Home_btn button {
   height: 50px;
@@ -146,6 +160,121 @@
   width: 100%;
   height: 150vh;
   background: #444444;
+}
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 500px){
+  .Home_first_fold {
+    widows: 100%;
+    height: 100vh;
+    position: relative;
+    background: #444444;
+  }
+  
+  .Home_top_bar {
+    height: 50px;
+    padding: 0px 25px;
+  }
+  .Home_btn button {
+    height: 40px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+  .Home_img {
+    position: relative;
+    text-align: center;
+  }
+  
+  .Home_img h1 {
+    max-width: 500px;
+    width: 80%;
+    font-size: 25px;
+    line-height: 25px;
+    right: 10%;
+    left: 10%;
+    top: 125px;
+  }
+  
+  #cloud1 {
+    width: 60%;
+    position: absolute;
+    left: -14%;
+    top: 55px;
+    z-index: 2;
+  }
+  #cloud2 {
+    width: 60%;
+    position: absolute;
+    left: -7%;
+    top: 185px;
+    z-index: 1;
+  }
+  #cloud3 {
+    width: 60%;
+    position: absolute;
+    left: 10%;
+    top: 100px;
+    z-index: 3;
+  }
+  #cloud4 {
+    width: 60%;
+    position: absolute;
+    right: -5%;
+    top: 60px;
+    z-index: 1;
+    
+  }
+  #cloud5 {
+    width: 60%;
+    position: absolute;
+    right: -5%;
+    top: 200px;
+    z-index: 2;
+  }
+  
+  .Home_img_rings {
+    max-width: 1100px;
+    width: 98%;
+    margin: 0 auto;
+    height: fit-content;
+    position: relative;
+  }
+  
+  #ring1 {
+    -webkit-animation:spin 60s linear infinite;
+    -moz-animation:spin 60s linear infinite;
+    animation:spin 60s linear infinite;
+    width: 100%;
+    position: absolute;
+    top: 375px;
+    right: 0;
+    left: 0;
+  }
+  
+  #ring2 {
+    -webkit-animation:spin 40s linear infinite reverse;
+    -moz-animation:spin 40s linear infinite reverse;
+    animation:spin 40s linear infinite reverse;
+    width: 100%;
+    position: absolute;
+    top: 375px;
+    right: 0;
+    left: 0;
+  }
+  
+  .Home_body {
+    width: 100%;
+    height: 150vh;
+    background: #444444;
+  }
 }
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
