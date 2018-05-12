@@ -88,7 +88,6 @@ class FindRoom extends Component {
                     <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#7fffd4"})} style={{background: `#7fffd4`}}></button>
                     <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#00FFFF"})} style={{background: `#00FFFF`}}></button>
                     <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FF6EFF"})} style={{background: `#FF6EFF`}}></button>
-                    <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FFAE42"})} style={{background: `#FFAE42`}}></button>
                     <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#8FD400"})} style={{background: `#8FD400`}}></button>
                     <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FFFF26"})} style={{background: `#FFFF26`}}></button>
                     <button onClick={() => this.props.changeColor({user_id: this.props.user.id, color: "#FF0000"})} style={{background: `#FF0000`}}></button>
