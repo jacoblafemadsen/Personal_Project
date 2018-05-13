@@ -107,6 +107,7 @@ io.on('connection', socket => {
   });
 
   socket.on(`queue message`, input => {
+    console.log(input)
     io.emit(`queue-${input.rooms_id}`, input.queue_id)
   });
   socket.on(`remove message`, input => {

@@ -118,7 +118,7 @@
   left: 0;
 }
 .Home_img_rings h1 {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   width: 100%;
   font-size: 5vh;
@@ -339,6 +339,23 @@
   .Home_footer_p {
     font-size: 20px;
     line-height: 20px; 
+  }
+}
+
+@media screen and (min-height: 650px){
+  .Home-laptop-guy {
+    width: 0;
+    display: none;
+  }
+  .Home-laptop-guy img {
+    width: 0;
+  }
+  .Home-phone-guy {
+    width: 0;
+    display: none;
+  }
+  .Home-phone-guy img {
+    width: 0;
   }
 }
 

@@ -19,7 +19,9 @@ class Queue extends Component {
     }
   }
   componentDidMount() {
-    this.props.getUser()
+    axios.get(`/api/queue/${this.props.user.rooms_id}`).then(res => {
+      this.props.getRoomQueue(res.data)
+    })
     socket.on(`queue-${this.props.user.rooms_id}`, queue_id => {
       axios.get(`/api/queueitem/${queue_id}`).then(res => {
         this.props.addToQueue(res.data)
@@ -28,9 +30,6 @@ class Queue extends Component {
     socket.on(`remove-${this.props.user.rooms_id}`, data => {
       console.log(data)
       this.props.deleteVideo(data)
-    })
-    axios.get(`/api/queue/${this.props.user.rooms_id}`).then(res => {
-      this.props.getRoomQueue(res.data)
     })
   }
   emitQueue() {
@@ -61,6 +60,7 @@ class Queue extends Component {
 
   render() {
      var queueArr = this.props.videoQueue.map((e, i) => {
+       console.log(e + '| |' + i)
         return (
           <QueueCard 
             key={e.video_id + i}

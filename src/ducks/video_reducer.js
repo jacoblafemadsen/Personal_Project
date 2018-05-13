@@ -58,6 +58,7 @@ export function getRoomQueue(queueArr) {
 }
 
 export function addToQueue(obj) {
+  console.log(obj)
   return {
     type: ADD_TO_QUEUE,
     payload: obj
