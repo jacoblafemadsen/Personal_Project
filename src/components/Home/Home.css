@@ -169,6 +169,7 @@
   height: 100%;
 }
 .Home_how_to_textl {
+  max-width: 1000px;
   width: 50%;
   height: 100%;
   padding: 25px;
@@ -190,6 +191,7 @@
   font-family: 'Roboto', sans-serif;
 }
 .Home_how_to_textr {
+  max-width: 1000px;
   width: 50%;
   height: 100%;
   padding: 25px;
