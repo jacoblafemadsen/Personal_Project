@@ -96,19 +96,18 @@ io.on('connection', socket => {
       display_name: display_name,
       img: img,
       message: message,
-      color: color
+      color: color,
     }
     io.emit(`chat-${rooms_id}`, responseObj)
   });
 
   socket.on(`video message`, input => {
-    console.log(input)
     io.emit(`video-${input.rooms_id}`, input)
   });
 
   socket.on(`queue message`, input => {
-    console.log(input)
-    io.emit(`queue-${input.rooms_id}`, input.queue_id)
+    console.log('Sockets' + JSON.stringify(input))
+    io.emit(`queue-${input.rooms_id}`, input)
   });
   socket.on(`remove message`, input => {
     io.emit(`remove-${input.rooms_id}`, input.index)

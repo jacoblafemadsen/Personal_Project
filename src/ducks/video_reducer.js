@@ -4,7 +4,8 @@ import axios from 'axios'
 const initialState = {
   videoQueue: [],
   videoCurrentState: 4,
-  user: {}
+  user: {}, 
+  last_id: ''
 }
 
 const CHANGE_VIDEO_STATE = 'CHANGE_VIDEO_STATE',
@@ -58,7 +59,6 @@ export function getRoomQueue(queueArr) {
 }
 
 export function addToQueue(obj) {
-  console.log(obj)
   return {
     type: ADD_TO_QUEUE,
     payload: obj
@@ -108,14 +108,18 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, {videoQueue: action.payload})
 
     case ADD_TO_QUEUE:
-      let arrObj1 = [...state.videoQueue]
-      arrObj1.push(action.payload)
-      return Object.assign({}, state, {videoQueue: arrObj1})
+    console.log(state.last_id + '| |' + action.payload.id)
+      if(state.last_id !== action.payload.id) {
+        let arrObj1 = [...state.videoQueue]
+        arrObj1.push(action.payload)
+        return Object.assign({}, state, {videoQueue: arrObj1, last_id: action.payload.id})
+      } else {
+        return Object.assign({}, state, {last_id: action.payload.id})
+      }
 
     case DELETE_VIDEO:
       let arrObj2 = [...state.videoQueue]
       arrObj2.splice(action.payload, 1)
-      console.log(arrObj2)
       return Object.assign({}, state, {videoQueue: arrObj2})
 
     case CHANGE_COLOR + '_FULFILLED':

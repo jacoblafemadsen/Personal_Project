@@ -11,25 +11,22 @@ import './Queue.css'
 const socket = io()
 
 class Queue extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       queueInput: '',
       hide: true
     }
+    socket.on(`queue-${props.user.rooms_id}`, obj => {
+      this.props.addToQueue(obj)
+    })
+    socket.on(`remove-${props.user.rooms_id}`, data => {
+      this.props.deleteVideo(data)
+    })
   }
   componentDidMount() {
     axios.get(`/api/queue/${this.props.user.rooms_id}`).then(res => {
       this.props.getRoomQueue(res.data)
-    })
-    socket.on(`queue-${this.props.user.rooms_id}`, queue_id => {
-      axios.get(`/api/queueitem/${queue_id}`).then(res => {
-        this.props.addToQueue(res.data)
-      })
-    })
-    socket.on(`remove-${this.props.user.rooms_id}`, data => {
-      console.log(data)
-      this.props.deleteVideo(data)
     })
   }
   emitQueue() {
@@ -41,14 +38,14 @@ class Queue extends Component {
           video_id: vidId, 
           video_name: res.data.items[0].snippet.localized.title,
           video_img: res.data.items[0].snippet.thumbnails.default.url,
-          users_id: this.props.user.id,
+          user_img: this.props.user.img,
           rooms_id: this.props.user.rooms_id
         }
         axios.post(`/api/queue`, obj).then(res => {
-          socket.emit('queue message', {queue_id: res.data, rooms_id: this.props.user.rooms_id})
-          this.setState({queueInput: ''})
+          socket.emit('queue message', res.data)
         })
       })
+      this.setState({queueInput: ''})
     } else {
       this.setState({queueInput: ''})
     }
@@ -60,7 +57,6 @@ class Queue extends Component {
 
   render() {
      var queueArr = this.props.videoQueue.map((e, i) => {
-       console.log(e + '| |' + i)
         return (
           <QueueCard 
             key={e.video_id + i}
