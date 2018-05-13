@@ -38,13 +38,13 @@ class Home extends Component {
             <img src={cloud3} id="cloud3" alt="" draggable="false" />
             <img src={cloud4} id="cloud4" alt="" draggable="false" />
             <img src={cloud5} id="cloud5" alt="" draggable="false" />
-            <div className="Home_img_rings">
+            <h1>Share and watch videos in real time, with your friends, family, coworkers, and peers</h1>
+          </div>
+          <div className="Home_img_rings">
               <img src={rings1} id="ring1" alt="" draggable="false" />
               <img src={rings2} id="ring2" alt="" draggable="false" />
               <img src={earthRing} id="ringEarth" alt="" draggable="false" />
-              <h1>Share and watch videos in real time, with your friends, family, coworkers, and peers</h1>
             </div>
-          </div>
         </div>
         <div className="Home_body">
 
