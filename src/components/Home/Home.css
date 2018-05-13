@@ -256,6 +256,133 @@
   }
 }
 
+@media screen and (max-width: 950px){
+  .Home_how_to_textl h1 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .Home_how_to_textl p {
+    font-size: 25px;
+    line-height: 25px; 
+  }
+  .Home_how_to_textr h1 {
+    font-size: 40px;
+    line-height: 40px;
+  }
+  .Home_how_to_textr p {
+    font-size: 25px;
+    line-height: 25px; 
+  }
+}
+
+@media screen and (max-width: 500px){
+  .Home_top_bar {
+    height: 50px;
+    padding: 0px 25px;
+  }
+  .Home_btn button {
+    height: 40px;
+    font-size: 18px;
+    line-height: 18px;
+  }
+  .Home_img {
+    padding-top: 0px;
+  }
+  .Home_img_rings {
+    width: 100vw;
+    height: 100vw;
+  }
+  .Home_img_rings h1 {
+    font-size: 4vh;
+    line-height: 4vh;
+    width: 90%;
+    right: 5%;
+    left: 5%;
+    padding: 4vh 8vh;
+  }
+  .Home_body {
+    height: 150vh;
+    padding: 0 25px;
+  }
+  .Home_how_tol {
+    height: 30vh;
+  }
+  .Home_how_tor {
+    height: 30vh;
+  }
+  .Home_how_to_textl {
+    width: 100%;
+  }
+  .Home_how_to_textl h1 {
+    font-size: 35px;
+    line-height: 35px;
+  }
+  .Home_how_to_textl p {
+    font-size: 20px;
+    line-height: 20px; 
+  }
+  .Home_how_to_textr {
+    width: 100%;
+  }
+  .Home_how_to_textr h1 {
+    font-size: 35px;
+    line-height: 35px;
+  }
+  .Home_how_to_textr p {
+    font-size: 20px;
+    line-height: 20px; 
+  }
+  .Home_footer_h1 {
+    font-size: 35px;
+    line-height: 35px;
+  }
+  .Home_footer_p {
+    font-size: 20px;
+    line-height: 20px; 
+  }
+}
+
+@media screen and (max-width: 500px){
+  .Home_img_rings h1 {
+    font-size: 3vh;
+    line-height: 3vh;
+    padding: 3vh 6vh;
+  }
+  .Home_body {
+    height: 125vh;
+  }
+  .Home_how_tol {
+    height: 25vh;
+  }
+  .Home_how_tor {
+    height: 25vh;
+  }
+  .Home_how_to_textl h1 {
+    font-size: 25px;
+    line-height: 25px;
+  }
+  .Home_how_to_textl p {
+    font-size: 18px;
+    line-height: 18px; 
+  }
+  .Home_how_to_textr h1 {
+    font-size: 25px;
+    line-height: 25px;
+  }
+  .Home_how_to_textr p {
+    font-size: 18px;
+    line-height: 18px; 
+  }
+  .Home_footer_h1 {
+    font-size: 25px;
+    line-height: 25px;
+  }
+  .Home_footer_p {
+    font-size: 18px;
+    line-height: 18px; 
+  }
+}
+
 
 @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
 @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
