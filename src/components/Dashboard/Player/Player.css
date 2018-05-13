@@ -127,6 +127,7 @@
   }
   .Player-controls {
     width: 290px;
+    align-items: flex-start;
   }
   .Player-controls button {
     width: 30px;
@@ -151,89 +152,27 @@
 
 
 
-@media screen and (max-width: 375px){ 
+@media screen and (max-width: 500px){ 
   .Player-controls-container {
-    position: relative;
     height: 35px;
-    width: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  }
-  .Player-YouTube-overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  .Player-YouTube-overlay-icon-container {
-    width: 75px;
-    height: 75px;
-    position: relative;
-  }
-  .Player-YouTube-overlay-icon {
-    width: 100%;
-    height: 100%;
-  }
-  .Player-YouTube-overlay-icon-img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    z-index: 1;
-  }
-  .Player-YouTube-overlay-icon-background {
-    width: 70px;
-    height: 70px;
-    border-radius: 35px;
-    position: absolute;
-    top: 2.5px;
-    left: 2.5px;
-    opacity: 1;
-    z-index: 0;
   }
   .Player-controls {
-    height: 100%;
+    height: 35px;
     width: 340px;
-    display: flex;
   }
   .Player-controls button {
     width: 35px;
     height: 35px;
-    border: none;
-    background: none;
-    padding: 0;
-    cursor: pointer;
-    margin-left: -1px;
   }
   .Player-controls img {
     width: 35px;
     height: 35px;
   }
-  .Player-controls img:hover {
-    width: 35px;
-    height: 35px;
-    margin: 0 0;
-    border-radius: 0;
-  }
   .Player-current-volume {
     width: 35px;
     height: 35px;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto', sans-serif;
     font-size: 12px;
     line-height: 12px;
+    margin-left: -1px;
   }
 }

@@ -8,6 +8,7 @@
   display: flex;
   background: #444444;
   margin-bottom: 10px;
+  border-radius: 10px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
 .QueueCard-card p {
@@ -27,7 +28,6 @@
   border-top-left-radius: 10px;
   margin-right: 10px;
 }
-
 .QueueCard-btnImg {
   display: flex;
   flex-direction: column;
@@ -53,6 +53,7 @@
 }
 .QueueCard-user-img img {
   height: 30px;
+  border-radius: 50%;
 }
 
 

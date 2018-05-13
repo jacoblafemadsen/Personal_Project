@@ -60,6 +60,13 @@ class Dashboard extends Component {
             </div>
           </div>
         </div>
+        <div className="Dash-sub-bar">
+          <div id='queue-sub-bar'><Queue/></div>
+          <div className="Dash-sub-bar-name">
+            <h1>{this.state.roomName}</h1>
+          </div>
+          <div id='chat-sub-bar'><Chat/></div>
+        </div>
         <div id='player'><Player/></div>
         <div id='queue'><Queue/></div>
         <div id='chat'><Chat/></div>
