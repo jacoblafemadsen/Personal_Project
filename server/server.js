@@ -91,8 +91,9 @@ const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port: 
 io.on('connection', socket => {
 
   socket.on(`chat message`, input => {
-    let { rooms_id, display_name, img, message, color } = input
+    let { rooms_id, display_name, img, message, color, id } = input
     let responseObj = {
+      id: id,
       display_name: display_name,
       img: img,
       message: message,

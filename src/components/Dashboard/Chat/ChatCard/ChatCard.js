@@ -3,7 +3,8 @@ import './ChatCard.css'
 
 function ChatCard(props) {
   var card
-  if(props.currentUser === props.userObj.display_name) {
+  console.log(props.messageUser)
+  if(props.currentUser === props.messageUser) {
     card = (
       <div className="main">
         <div id="mainCard" className="ChatCard_message" style={{background: `${props.color}`}}>
@@ -11,14 +12,6 @@ function ChatCard(props) {
         </div>
         <div className="ChatCard_user_img">
           <img src={props.userObj.img} alt=""/>
-        </div>
-      </div>
-    )
-  } else if('theServer' === props.userObj.display_name) {
-    card = (
-      <div className="server">
-        <div id="serverCard" className="ChatCard_message">
-          <p>{props.userObj.message}</p>
         </div>
       </div>
     )

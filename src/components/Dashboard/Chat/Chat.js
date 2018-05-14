@@ -27,6 +27,7 @@ class Chat extends Component {
     if(this.state.newMessages !== '') {
       var obj = {
         rooms_id: this.props.user.rooms_id,
+        id: this.props.user.id,
         display_name: this.props.user.display_name,
         img: this.props.user.img,
         color: this.props.user.color,
@@ -44,9 +45,10 @@ class Chat extends Component {
   render() {
     const messages = this.state.messages.map((e, i) => {
       return (
-        <ChatCard 
+        <ChatCard
           userObj={e}
-          currentUser={this.props.user.display_name}
+          messageUser={e.id}
+          currentUser={this.props.user.id}
           color={this.props.user.color}
         />
       )

@@ -9,12 +9,14 @@
   width: 100%;
   height: calc(100% - 80px);
   overflow-y: auto;
+  display: flex;
+  padding-bottom: 10px;
+  flex-direction: column-reverse;
 }
 .Chat-chatGuy {
   width: fit-content;
   height: 225px;
-  margin: 0 auto;
-  margin-top: calc(50vh - 210px);
+  margin: 25% auto;
 }
 .Chat-chatGuy img {
   height: 100%;
@@ -74,12 +76,11 @@
     flex-direction: column-reverse;
   }
   .Chat-chatGuy {
-    width: fit-content;
-    height: fit-content;
-    margin: 23px auto;
+    height: 200px;
+    margin: 5% auto;
   }
   .Chat-chatGuy img {
-    height: 200px;
+    height: 100%;
   }
   .Chat_input {
     height: calc(20% - 20px);
