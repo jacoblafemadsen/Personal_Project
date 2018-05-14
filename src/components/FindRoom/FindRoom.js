@@ -86,7 +86,9 @@ class FindRoom extends Component {
             <div className="FR-join-room-title">
               <p>Join a room</p>
             </div>
-            {roomArr}
+            <div className="FR-join-room-container">
+              {roomArr}
+            </div>
           </div>
           <div className="FR-create-room">
             <p>Create a room</p>
@@ -117,13 +119,12 @@ class FindRoom extends Component {
               />
               <label>Password</label>
               <input 
-                type="text"
+                type="password"
                 onChange={e => this.updatePassword(e.target.value)}
                 value={this.state.passwordInpt}
               />
               <button
                 id="FR-button-create"
-                type="text"
                 style={{background: `${this.props.user.color}`}}
                 onClick={() => this.prepForMakeRoom()}
               >Make a room</button>

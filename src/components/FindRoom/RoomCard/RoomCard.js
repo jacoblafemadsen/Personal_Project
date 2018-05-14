@@ -48,6 +48,7 @@ class RoomCard extends React.Component {
             className={this.state.display ? "RoomCard-on" : "RoomCard-off"}
             onChange={e => this.updateInput(e.target.value)}
             value={this.state.input}
+            type="password"
             placeholder="Password"
           />
           <button

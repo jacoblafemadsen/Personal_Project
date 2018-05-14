@@ -69,7 +69,10 @@
   border-bottom: 2px solid white;
   margin-bottom: 15px;
 }
-
+.FR-join-room-container {
+  height: calc(100% - 65px);
+  overflow-y: scroll;
+}
 .FR-create-room {
   max-width: 500px;
   width: 50%;
@@ -249,7 +252,10 @@
     border-bottom: 2px solid white;
     margin-bottom: 25px;
   }
-  
+  .FR-join-room-container {
+    height: fit-content;
+    overflow-y: hidden;
+  }
   .FR-create-room {
     max-width: 375px;
     width: 100%;
