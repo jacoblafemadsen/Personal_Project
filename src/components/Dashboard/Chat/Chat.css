@@ -77,7 +77,8 @@
   }
   .Chat-chatGuy {
     height: 200px;
-    margin: 5% auto;
+    margin: 0 auto;
+    margin-bottom: 20px;
   }
   .Chat-chatGuy img {
     height: 100%;

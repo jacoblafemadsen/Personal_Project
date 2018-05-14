@@ -1,6 +1,7 @@
 .QueueCard {
   width: 100%;
   height: 100px;
+  margin-top: 10px;
 }
 .QueueCard-card {
   width: 100%;
