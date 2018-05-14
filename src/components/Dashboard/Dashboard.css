@@ -216,7 +216,6 @@
     position: absolute;
     left: 0;
     top: 0;
-
   }
   #chat-sub-bar {
     display: none;
@@ -231,6 +230,9 @@
     top: 100px;
   }
   #chat {
-    display: none;
+    width: 100%;
+    top: calc(100vw * .5625 + 135px);
+    right: 0;
+    left: 0;
   }
 }

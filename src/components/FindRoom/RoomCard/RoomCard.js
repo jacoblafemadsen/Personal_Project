@@ -30,9 +30,12 @@ class RoomCard extends React.Component {
       return <Redirect push to="/dashboard"/>
     }
     return (
-      <div className="RoomCard" onClick={() => this.setState({display: true})}>
+      <div 
+        className="RoomCard" 
+        onClick={() => this.setState({display: true})}
+        style={this.props.eo === 'even' ? {background: 'rgb(99, 99, 99)'} : {background: ' #444444'}}
+      >
         <button 
-          style={{background: `${this.props.user.color}`}}
           className={this.state.display ? "RoomCard-btn1" : "RoomCard-off"}
           onClick={() => setTimeout(() => this.setState({display: false}), 50)}
         >
@@ -41,17 +44,17 @@ class RoomCard extends React.Component {
         <p id="RoomCard-p1">{`${this.props.roomObj.name}`}</p>
         <p id="RoomCard-p2">{`Created By: ${this.props.roomObj.made_by}`}</p>
         <div id="RoomCard-btnInput" className={this.state.display ? "RoomCard-on" : "RoomCard-off"}>
-          <p className={this.state.display ? "RoomCard-on" : "RoomCard-off"}>Password: </p>
           <input 
             className={this.state.display ? "RoomCard-on" : "RoomCard-off"}
             onChange={e => this.updateInput(e.target.value)}
             value={this.state.input}
+            placeholder="Password"
           />
           <button
             style={{background: `${this.props.user.color}`}}
             className={this.state.display ? "RoomCard-btn2" : "RoomCard-off"}
             onClick={() => this.join()}
-          >Go</button>
+          >Join</button>
         </div>
       </div>
     )

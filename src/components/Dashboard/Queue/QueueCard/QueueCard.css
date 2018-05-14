@@ -98,3 +98,10 @@
     display: none;
   }
 }
+
+@media screen and (max-width: 500px){
+  .QueueCard-card p {
+    font-size: 14px;
+    line-height: 14px;
+  }
+}

@@ -50,14 +50,26 @@ class FindRoom extends Component {
     if(this.state.redirect) {
       return <Redirect push to="/dashboard"/>
     }
-    var roomArr = this.state.rooms.map(e => {
-      return (
-        <RoomCard 
-          key={e.id}
-          roomObj={e}
-          userId={this.props.user.id}
-        />
-      )
+    var roomArr = this.state.rooms.map((e, i) => {
+      if(i % 2 === 0) {
+        return (
+          <RoomCard 
+            key={e.id}
+            eo="even"
+            roomObj={e}
+            userId={this.props.user.id}
+          />
+        )
+      } else {
+        return (
+          <RoomCard 
+            key={e.id}
+            eo="odd"
+            roomObj={e}
+            userId={this.props.user.id}
+          />
+        )
+      }
     })
     return (
       <div className="FindRoom">
