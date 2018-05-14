@@ -38,7 +38,7 @@ class Queue extends Component {
           video_id: vidId, 
           video_name: res.data.items[0].snippet.localized.title,
           video_img: res.data.items[0].snippet.thumbnails.default.url,
-          user_img: this.props.user.img,
+          users_id: this.props.user.id,
           rooms_id: this.props.user.rooms_id
         }
         axios.post(`/api/queue`, obj).then(res => {
